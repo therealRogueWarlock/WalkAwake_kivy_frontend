@@ -1,0 +1,17 @@
+#:kivy 1.0
+<Settings>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        Button:
+            text: 'Goto home'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = root.manager.previous()
+        Button:
+            text: 'Alarm'
+            on_press:
+                root.manager.current = 'alarms'
+
+
+

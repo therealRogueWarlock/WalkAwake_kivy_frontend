@@ -1,0 +1,22 @@
+#:kivy 1.0
+<Home>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            id: DisplayCountLabel
+            font_size: 75
+
+        Button:
+            text: 'Goto settings'
+
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'settings'
+
+
+        Button:
+            text: 'countclicker'
+
+            on_press:
+                root.on_click_button()

@@ -7,9 +7,9 @@ from kivy.app import App
 
 from kivy.core.window import Window
 
-Window.fullscreen = true
-Window.always_on_top = true
-Window.show_cursor = false
+Window.fullscreen = True
+Window.always_on_top = True
+Window.show_cursor = False
 
 class MainApp(App):
 

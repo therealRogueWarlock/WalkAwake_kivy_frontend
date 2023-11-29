@@ -1,3 +1,20 @@
- #:kivy 1.0
- #set_alarm.kv
- <set_alarm>:
+#:kivy 1.0
+<SetAlarm>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text:'set alarm'
+
+        Button:
+            text: 'cancel'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'alarms'
+
+
+        Button:
+            text: 'Confirm'
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'set_alarm_for'

@@ -1,5 +1,6 @@
 from kivy.uix.screenmanager import Screen
 
 
-class set_alarm(Screen):
+# set_alarm
+class SetAlarm(Screen):
     name = 'set_alarm'

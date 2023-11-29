@@ -12,8 +12,4 @@ class Home(Screen):
         self.counter += 1
         count_label = self.ids.DisplayCountLabel
         count_label.text = str(self.counter)
-        print(self.manager.screens)
-        print(self.counter)
 
-    def on_pre_enter(self):
-        print("pre enter main")

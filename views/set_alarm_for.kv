@@ -1,21 +1,19 @@
 #:kivy 1.0
-<Alarms>:
+<SetAlarmFor>:
     BoxLayout:
         orientation: 'vertical'
 
         Label:
-            text:'alarms'
-
-
+            text:'set alarm for'
 
         Button:
-            text: 'Create alarm'
+            text: 'cancel'
             on_press:
                 root.manager.transition.direction = 'left'
-                root.manager.current = 'set_alarm'
+                root.manager.current = 'alarms'
 
         Button:
-            text: 'Go to home'
+            text: 'Confirm'
             on_press:
                 root.manager.transition.direction = 'right'
-                root.manager.current = 'home'
+                root.manager.current = 'alarms'

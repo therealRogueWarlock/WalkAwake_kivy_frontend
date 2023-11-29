@@ -3,15 +3,29 @@
     BoxLayout:
         orientation: 'vertical'
 
-        Button:
-            text: 'Goto home'
-            on_press:
-                root.manager.transition.direction = 'right'
-                root.manager.current = root.manager.previous()
+        Label:
+            text:'settings'
+
+
         Button:
             text: 'Alarm'
             on_press:
                 root.manager.current = 'alarms'
 
+        Button:
+            text: 'Time'
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'time_settings'
 
+        Button:
+            text: 'wifi settings'
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'wifi_settings'
 
+        Button:
+            text: 'home'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'home'

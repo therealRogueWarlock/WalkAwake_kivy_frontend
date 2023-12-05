@@ -4,22 +4,49 @@
 #: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
 <Alarms>:
-    BoxLayout:
-        orientation: 'vertical'
+    FloatLayout:
+        id: Background
+
+        canvas:
+            Color:
+                rgb: COLOUR.BACKGROUND
+
+            Rectangle:
+                pos: (0, 0)
+                size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
 
         Label:
-            text:'alarms'
+            id: Header
+            pos: (-224, 144)
 
+            font_size: FONTSIZE.XL
+            color: COLOUR.PRIMARY
 
+        BoxLayout:
+            orientation: 'horizontal'
+            pos: (200, 192)
+            size_hint_max: (600, 96)
 
+            Button:
+                id: Monday
+
+                text: 'M'
+                font_size: FONTSIZE.NM
+                color: COLOUR.ACCENT
+                background_color: COLOUR.INVISIBLE
+
+                on_press:
+                    root.go_to('monday')
+
+        # Back
         Button:
-            text: 'Create alarm'
-            on_press:
-                root.manager.transition.direction = 'left'
-                root.manager.current = 'set_alarm'
-
-        Button:
-            text: 'Go to home'
+            id: Back
+            pos: (656, 24)              # Position in Pixels
+            size_hint_max: (120, 120)   # Size in Pixels
+            
+            # text: 'Settings'
+            background_normal: ICON.BACK
+            
             on_press:
                 root.manager.transition.direction = 'right'
-                root.manager.current = 'home'
+                root.manager.current = 'settings'

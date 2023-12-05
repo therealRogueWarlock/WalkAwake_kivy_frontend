@@ -1,31 +1,78 @@
 #:kivy 1.0
+#: import COLOUR theme.Colour
+#: import ICON theme.Icons
+#: import FONTSIZE theme.Text
+#: import RESOLUTION theme.Size
 <Settings>:
-    BoxLayout:
-        orientation: 'vertical'
+    FloatLayout:
+        id: Background
+
+        canvas:
+            Color:
+                rgb: COLOUR.BACKGROUND
+
+            Rectangle:
+                pos: (0, 0)
+                size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
 
         Label:
-            text:'settings'
+            id: Header
+            pos: (-224, 144)
 
+            text: 'Settings'
+            font_size: FONTSIZE.XL
+            color: COLOUR.PRIMARY
 
+        BoxLayout:
+            orientation: 'vertical'
+            pos: (200, 60)
+            size_hint_max: (300, 240)
+
+            Button:
+                id: Alarms
+
+                text: 'Alarms'
+                font_size: FONTSIZE.NM
+                color: COLOUR.PRIMARY
+                background_color: COLOUR.INVISIBLE
+
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'alarms'
+
+            Button:
+                id: Time
+
+                text: 'Timezone'
+                font_size: FONTSIZE.NM
+                color: COLOUR.PRIMARY
+                background_color: COLOUR.INVISIBLE
+
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'time_settings'
+
+            Button:
+                id: Wifi
+
+                text: 'WiFi'
+                font_size: FONTSIZE.NM
+                color: COLOUR.PRIMARY
+                background_color: COLOUR.INVISIBLE
+
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'wifi_settings'
+
+        # Back
         Button:
-            text: 'Alarm'
-            on_press:
-                root.manager.current = 'alarms'
-
-        Button:
-            text: 'Time'
-            on_press:
-                root.manager.transition.direction = 'left'
-                root.manager.current = 'time_settings'
-
-        Button:
-            text: 'wifi settings'
-            on_press:
-                root.manager.transition.direction = 'left'
-                root.manager.current = 'wifi_settings'
-
-        Button:
-            text: 'home'
+            id: Back
+            pos: (656, 24)              # Position in Pixels
+            size_hint_max: (120, 120)   # Size in Pixels
+            
+            # text: 'Settings'
+            background_normal: ICON.BACK
+            
             on_press:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'home'

@@ -36,6 +36,10 @@
                 color: COLOUR.PRIMARY
                 background_color: COLOUR.INVISIBLE
 
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'alarms'
+
             Button:
                 id: Time
 
@@ -44,6 +48,10 @@
                 color: COLOUR.PRIMARY
                 background_color: COLOUR.INVISIBLE
 
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'time_settings'
+
             Button:
                 id: Wifi
 
@@ -51,6 +59,10 @@
                 font_size: FONTSIZE.NM
                 color: COLOUR.PRIMARY
                 background_color: COLOUR.INVISIBLE
+
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'wifi_settings'
 
         # Back
         Button:

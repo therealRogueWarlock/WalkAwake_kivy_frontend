@@ -1,13 +1,18 @@
 #:kivy 1.0
-<Camera>
-    orientation: 'vertical'
-    Image:
-        id: imageView
-        source: './icons/back_arrow.png'
-        allow_stretch: True
 
-    Button:
-        text: 'Capture'
-        size_hint_y: None
-        height: '48dp'
-        on_press: root.capture()
+<Camera>
+    FloatLayout:
+        Image:
+            id: imageView
+            source: 'C:/Users/sande/PycharmProjects/Kivy-GTFU-frontend/kitchen.jpg'
+
+
+        Button:
+            text: 'Capture'
+            size_hint_max: (120,120)
+            pos:(656, 24)
+            background_normal: './views/icons/plus.png'
+
+            on_press: root.capture()
+
+

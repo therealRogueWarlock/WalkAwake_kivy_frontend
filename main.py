@@ -8,13 +8,14 @@ from kivy.app import App
 
 from kivy.core.window import Window
 
-if(os.name == 'posix'):
+if os.name == 'posix':
     Window.fullscreen = 'auto'
     Window.always_on_top = True
     Window.show_cursor = False
 else:
     Window.size = (800, 480)
     Window.borderless = True
+
 
 class MainApp(App):
 
@@ -27,4 +28,3 @@ class MainApp(App):
 
 if __name__ == '__main__':
     MainApp().run()
-

@@ -5,7 +5,6 @@ class Colour():
     ENABLED    = (.24, .55, .69)
     DISABLED   = (.24, .55, .69) 
 
-
 class Text():
     XL = '72sp'
     LG = '36sp'
@@ -17,3 +16,14 @@ class Text():
 class Size():
     WIDTH  = 800
     HEIGHT = 480
+    
+class Icons():
+    HOME     = './views/icons/home.png'
+    BACK     = './views/icons/back_arrow.png'
+    SETTINGS = './views/icons/settings.png'
+    
+    CONFIRM = './views/icons/plus.png'
+    CANCEL  = './views/icons/cancel.png'
+    
+    PLUS      = './views/icons/plus.png'
+    SOUND_OFF = './views/icons/sound_off.png'

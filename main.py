@@ -1,3 +1,4 @@
+import os
 import kivy
 from views import Screens
 
@@ -7,9 +8,13 @@ from kivy.app import App
 
 from kivy.core.window import Window
 
-Window.fullscreen = 'auto'
-Window.always_on_top = True
-Window.show_cursor = False
+if(os.name == 'posix'):
+    Window.fullscreen = 'auto'
+    Window.always_on_top = True
+    Window.show_cursor = False
+else:
+    Window.size = (800, 480)
+    Window.borderless = True
 
 class MainApp(App):
 

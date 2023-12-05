@@ -1,30 +1,35 @@
 #:kivy 1.0
+#: import COLOUR theme.Colour
+#: import ICON theme.Icons
+#: import FONTSIZE theme.Text
+#: import RESOLUTION theme.Size
 <Home>:
     FloatLayout:
         id: Background
-        # width: 800
-        # height: 480
+
         canvas:
             Color:
-                rgb: (.24, .55, .69)    # Background Colour
+                rgb: COLOUR.BACKGROUND    # Background Colour
 
             Rectangle:
                 pos: (0, 0)
-                size: (800, 480)
+                size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
 
         # Current Time
         Label:
             id: CurrentTime
             pos: (-224, 144)
 
-            font_size: '72sp'
+            font_size: FONTSIZE.XL
+            color: COLOUR.PRIMARY
 
         # Label
         Label:
             id: Date
             pos: (-220, 100)
 
-            font_size: '20sp'
+            font_size: FONTSIZE.NM
+            color: COLOUR.PRIMARY
 
         BoxLayout:
             orientation: 'vertical'
@@ -36,13 +41,17 @@
                 id: Next
 
                 text: 'Next'
-                font_size: '16sp'
+                font_size: FONTSIZE.SM
+                color: COLOUR.ACCENT
+                bold: True
 
             # Next Alarm
             Label:
                 id: NextAlarm
 
-                font_size: '16sp'
+                font_size: FONTSIZE.SM
+                color: COLOUR.ACCENT
+                italic: True
 
         # Settings
         Button:
@@ -51,7 +60,7 @@
             size_hint_max: (120, 120)   # Size in Pixels
             
             # text: 'Settings'
-            background_normal: './views/icons/settings.png'
+            background_normal: ICON.SETTINGS
             
             on_press:
                 root.manager.current = 'settings'

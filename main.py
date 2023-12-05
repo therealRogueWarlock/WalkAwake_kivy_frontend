@@ -21,7 +21,8 @@ else:
 class MainApp(App):
 
     def build(self):
-        screen_manager = ScreenManager(transition=FadeTransition())
+        screen_manager = ScreenManager()
+        screen_manager.transition.duration = .15
         for screen in Screens:
             screen_manager.add_widget(screen())
         return screen_manager

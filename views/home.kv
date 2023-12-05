@@ -1,22 +1,57 @@
 #:kivy 1.0
 <Home>:
-    BoxLayout:
-        orientation: 'vertical'
+    FloatLayout:
+        id: Background
+        # width: 800
+        # height: 480
+        canvas:
+            Color:
+                rgb: (.24, .55, .69)    # Background Colour
 
+            Rectangle:
+                pos: (0, 0)
+                size: (800, 480)
+
+        # Current Time
         Label:
-            id: DisplayCountLabel
-            font_size: 75
+            id: CurrentTime
+            pos: (-224, 144)
 
+            font_size: '72sp'
+
+        # Label
+        Label:
+            id: Date
+            pos: (-220, 100)
+
+            font_size: '20sp'
+
+        BoxLayout:
+            orientation: 'vertical'
+            pos: (0, 20)
+            size_hint_max: (200, 50)
+
+            # Next
+            Label:
+                id: Next
+
+                text: 'Next'
+                font_size: '16sp'
+
+            # Next Alarm
+            Label:
+                id: NextAlarm
+
+                font_size: '16sp'
+
+        # Settings
         Button:
-            text: 'Goto settings'
-
+            id: Settings
+            pos: (656, 24)              # Position in Pixels
+            size_hint_max: (120, 120)   # Size in Pixels
+            
+            # text: 'Settings'
+            background_normal: './views/icons/settings.png'
+            
             on_press:
-                root.manager.transition.direction = 'left'
                 root.manager.current = 'settings'
-
-
-        Button:
-            text: 'countclicker'
-
-            on_press:
-                root.on_click_button()

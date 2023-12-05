@@ -6,4 +6,4 @@ from .alarms import Alarms
 from .set_alarm import SetAlarm
 from .set_alarm_for import SetAlarmFor
 from .camera import Camera
-Screens = [Camera, Home, Settings, Alarms, SetAlarm, SetAlarmFor, WifiSettings, TimeSettings]
+Screens = [Home, Settings, Alarms, SetAlarm, SetAlarmFor, WifiSettings, TimeSettings, Camera]

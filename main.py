@@ -4,7 +4,7 @@ from views import Screens
 from theme import Size
 
 kivy.require('1.0.7')
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.app import App
 
 from kivy.core.window import Window
@@ -21,7 +21,7 @@ else:
 class MainApp(App):
 
     def build(self):
-        screen_manager = ScreenManager()
+        screen_manager = ScreenManager(transition=FadeTransition())
         for screen in Screens:
             screen_manager.add_widget(screen())
         return screen_manager

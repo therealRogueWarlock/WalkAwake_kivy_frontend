@@ -1,9 +1,10 @@
 import os
 import kivy
 from views import Screens
+from theme import Size
 
 kivy.require('1.0.7')
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.app import App
 
 from kivy.core.window import Window
@@ -13,7 +14,7 @@ if os.name == 'posix':
     Window.always_on_top = True
     Window.show_cursor = False
 else:
-    Window.size = (800, 480)
+    Window.size = (Size.WIDTH, Size.HEIGHT)
     Window.borderless = True
 
 
@@ -21,6 +22,7 @@ class MainApp(App):
 
     def build(self):
         screen_manager = ScreenManager()
+        screen_manager.transition.duration = .15
         for screen in Screens:
             screen_manager.add_widget(screen())
         return screen_manager

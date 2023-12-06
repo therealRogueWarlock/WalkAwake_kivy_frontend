@@ -3,22 +3,27 @@
 #: import ICON theme.Icons
 #: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
+#: include views/components/header.kv
 <SetAlarm>:
     BoxLayout:
         orientation: 'vertical'
 
-        Label:
-            text:'set alarm'
+        Header:
+            id: Header
 
         Button:
-            text: 'cancel'
-            on_press:
+            background_normal: ICON.CANCEL
+            background_down: ICON.CANCEL
+            
+            on_release:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'alarms'
 
 
         Button:
-            text: 'Confirm'
-            on_press:
+            background_normal: ICON.CONFIRM
+            background_down: ICON.CONFIRM
+
+            on_release:
                 root.manager.transition.direction = 'left'
                 root.manager.current = 'set_alarm_for'

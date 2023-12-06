@@ -3,8 +3,28 @@
 #: import ICON theme.Icons
 #: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
+#: include views/components/background.kv
+#: include views/components/back_button.kv
 <TimeSettings>:
-    Button:
-        text: 'cancel'
-        on_press:
-            root.manager.current = 'alarms'
+    Background:
+        Header:
+            id: Header
+
+        Spinner:
+            id: Timezones
+            size_hint_max: (100, FONTSIZE.XL)
+            pos: (400, 200)
+            background_color: COLOUR.ACCENT
+            background_normal: ''
+            background_down: ''
+            text: 'Click Here'
+            # ================================= #
+            # Programatically addeded timezones #
+            # ================================= #
+            on_text:
+                root.spinner_clicked(root.ids.Timezones.text)
+
+        BackButton:
+            on_release:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'settings'

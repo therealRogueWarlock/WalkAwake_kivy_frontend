@@ -4,6 +4,8 @@
 #: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
 #: include views/components/day_button.kv
+#: include views/components/back_button.kv
+#: include views/components/header.kv
 <Alarms>:
     FloatLayout:
         id: Background
@@ -16,12 +18,8 @@
                 pos: (0, 0)
                 size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
 
-        Label:
+        Header:
             id: Header
-            pos: (-224, 144)
-
-            font_size: FONTSIZE.XL
-            color: COLOUR.PRIMARY
 
         BoxLayout:
             orientation: 'horizontal'
@@ -79,14 +77,7 @@
 					root.go_to('sunday')
 
         # Back
-        Button:
-            id: Back
-            pos: (656, 24)              # Position in Pixels
-            size_hint_max: (120, 120)   # Size in Pixels
-            
-            # text: 'Settings'
-            background_normal: ICON.BACK
-            
-            on_press:
+        BackButton:
+            on_release:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'settings'

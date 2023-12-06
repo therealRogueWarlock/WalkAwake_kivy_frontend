@@ -16,12 +16,8 @@
                 size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
 
         # Current Time
-        Label:
+        Header:
             id: CurrentTime
-            pos: (-224, 144)
-
-            font_size: FONTSIZE.XL
-            color: COLOUR.PRIMARY
 
         # Label
         Label:
@@ -62,6 +58,6 @@
             # text: 'Settings'
             background_normal: ICON.SETTINGS
             
-            on_press:
+            on_release:
                 root.manager.transition.direction = 'left'
                 root.manager.current = 'settings'

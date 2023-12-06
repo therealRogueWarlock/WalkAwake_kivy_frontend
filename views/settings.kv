@@ -3,6 +3,8 @@
 #: import ICON theme.Icons
 #: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
+#: include views/components/back_button.kv
+#: include views/components/header.kv
 <Settings>:
     FloatLayout:
         id: Background
@@ -15,12 +17,8 @@
                 pos: (0, 0)
                 size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
 
-        Label:
+        Header:
             id: Header
-            pos: (-224, 144)
-
-            font_size: FONTSIZE.XL
-            color: COLOUR.PRIMARY
 
         BoxLayout:
             orientation: 'vertical'
@@ -35,8 +33,8 @@
                 color: COLOUR.PRIMARY
                 background_color: COLOUR.INVISIBLE
 
-                on_press:
-                    root.manager.transition.direction = 'right'
+                on_release:
+                    root.manager.transition.direction = 'left'
                     root.manager.current = 'alarms'
 
             Button:
@@ -47,31 +45,26 @@
                 color: COLOUR.PRIMARY
                 background_color: COLOUR.INVISIBLE
 
-                on_press:
-                    root.manager.transition.direction = 'right'
+                on_release:
+                    root.manager.transition.direction = 'left'
                     root.manager.current = 'time_settings'
 
             Button:
                 id: Wifi
 
-                text: 'WiFi'
+                text: 'Wifi'
                 font_size: FONTSIZE.NM
                 color: COLOUR.PRIMARY
                 background_color: COLOUR.INVISIBLE
 
-                on_press:
-                    root.manager.transition.direction = 'right'
+                on_release:
+                    root.manager.transition.direction = 'left'
                     root.manager.current = 'wifi_settings'
 
         # Back
-        Button:
-            id: Back
-            pos: (656, 24)              # Position in Pixels
-            size_hint_max: (120, 120)   # Size in Pixels
-            
-            # text: 'Settings'
+        BackButton:
             background_normal: ICON.HOME
-            
-            on_press:
+
+            on_release:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'home'

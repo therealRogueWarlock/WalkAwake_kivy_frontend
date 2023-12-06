@@ -27,12 +27,16 @@ class Size():
 
 
 class Icons():
-    HOME = './views/icons/home.png'
-    BACK = './views/icons/back_arrow.png'
-    SETTINGS = './views/icons/settings.png'
+    PATH = './views/icons'
+    HOME = f'{PATH}/home.png'
+    BACK = f'{PATH}/back_arrow.png'
+    SETTINGS = f'{PATH}/settings.png'
 
-    CONFIRM = './views/icons/plus.png'
-    CANCEL = './views/icons/cancel.png'
+    CONFIRM = f'{PATH}/plus.png'
+    CANCEL = f'{PATH}/cancel.png'
 
-    PLUS = './views/icons/plus.png'
-    SOUND_OFF = './views/icons/sound_off.png'
+    PLUS = f'{PATH}/plus.png'
+    SOUND_OFF = f'{PATH}/sound_off.png'
+
+    ROUND_BUTTON_ENABLED = f'{PATH}/day_enabled.png'
+    ROUND_BUTTON_DISABLED = f'{PATH}/day_disabled.png'

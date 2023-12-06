@@ -1,13 +1,18 @@
 class Colour():
-    BACKGROUND = (.24, .55, .69)
-    PRIMARY = (.00, .00, .00)
-    ACCENT = (.33, .20, .15)
+    def rgb_to_scaled(red: int, green: int, blue: int):
+        return (red / 255.0, green / 255.0, blue / 255.0)
     
-    ENABLED = (.24, .55, .69)
-    DISABLED = (.24, .55, .69)
-    
-    INVISIBLE = (0, 0, 0, 0,)
+    def rgba_to_scaled(red: int, green: int, blue: int, alpha: int):
+        return (red / 255.0, green / 255.0, blue / 255.0, alpha / 100.0)
 
+    BACKGROUND = rgb_to_scaled(62, 139, 175)    # 3E8BAF
+    PRIMARY = rgb_to_scaled(0, 0, 0)            # 000000
+    ACCENT = rgb_to_scaled(83, 50, 37)          # 533225
+    
+    ENABLED = rgba_to_scaled(200, 200, 200, 100)    # C8C8C8
+    DISABLED = rgba_to_scaled(141, 141, 141, 60)    # 8D8D8D
+    
+    INVISIBLE = (0, 0, 0, 0)
 
 class Text():
     XL = '72sp'

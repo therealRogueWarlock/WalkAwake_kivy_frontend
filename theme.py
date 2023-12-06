@@ -1,13 +1,18 @@
 class Colour():
-    BACKGROUND = (.24, .55, .69)
-    PRIMARY = (.00, .00, .00)
-    ACCENT = (.33, .20, .15)
+    def rgb_to_scaled(red: int, green: int, blue: int):
+        return (red / 255.0, green / 255.0, blue / 255.0)
     
-    ENABLED = (.24, .55, .69)
-    DISABLED = (.24, .55, .69)
-    
-    INVISIBLE = (0, 0, 0, 0,)
+    def rgba_to_scaled(red: int, green: int, blue: int, alpha: int):
+        return (red / 255.0, green / 255.0, blue / 255.0, alpha / 100.0)
 
+    BACKGROUND = rgb_to_scaled(62, 139, 175)    # 3E8BAF
+    PRIMARY = rgb_to_scaled(0, 0, 0)            # 000000
+    ACCENT = rgb_to_scaled(83, 50, 37)          # 533225
+    
+    ENABLED = rgba_to_scaled(200, 200, 200, 100)    # C8C8C8
+    DISABLED = rgba_to_scaled(141, 141, 141, 60)    # 8D8D8D
+    
+    INVISIBLE = (0, 0, 0, 0)
 
 class Text():
     XL = '72sp'
@@ -22,12 +27,16 @@ class Size():
 
 
 class Icons():
-    HOME = './views/icons/home.png'
-    BACK = './views/icons/back_arrow.png'
-    SETTINGS = './views/icons/settings.png'
+    PATH = './views/icons'
+    HOME = f'{PATH}/home.png'
+    BACK = f'{PATH}/back_arrow.png'
+    SETTINGS = f'{PATH}/settings.png'
 
-    CONFIRM = './views/icons/plus.png'
-    CANCEL = './views/icons/cancel.png'
+    CONFIRM = f'{PATH}/plus.png'
+    CANCEL = f'{PATH}/cancel.png'
 
-    PLUS = './views/icons/plus.png'
-    SOUND_OFF = './views/icons/sound_off.png'
+    PLUS = f'{PATH}/plus.png'
+    SOUND_OFF = f'{PATH}/sound_off.png'
+
+    ROUND_BUTTON_ENABLED = f'{PATH}/day_enabled.png'
+    ROUND_BUTTON_DISABLED = f'{PATH}/day_disabled.png'

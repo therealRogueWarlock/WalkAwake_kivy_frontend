@@ -3,23 +3,90 @@
 #: import ICON theme.Icons
 #: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
+#: include views/components/day_button.kv
 <Alarms>:
-    BoxLayout:
-        orientation: 'vertical'
+    FloatLayout:
+        id: Background
+
+        canvas:
+            Color:
+                rgb: COLOUR.BACKGROUND
+
+            Rectangle:
+                pos: (0, 0)
+                size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
 
         Label:
-            text:'alarms'
+            id: Header
+            pos: (-224, 144)
 
+            font_size: FONTSIZE.XL
+            color: COLOUR.PRIMARY
 
+        BoxLayout:
+            orientation: 'horizontal'
+            pos: (0, (RESOLUTION.HEIGHT - 96)/2)
+            size_hint_max: (RESOLUTION.WIDTH, 96)
+            padding: (50, 0)
 
+            DayButton:
+                id: Monday
+                text: 'M'
+
+                on_release:
+					root.go_to('monday')
+
+            DayButton:
+                id: Tuesday
+                text: 'T'
+
+                on_release:
+					root.go_to('tuesday')
+
+            DayButton:
+                id: Wednesday
+                text: 'W'
+
+                on_release:
+					root.go_to('wednesday')
+
+            DayButton:
+                id: Thursday
+                text: 'T'
+
+                on_release:
+					root.go_to('thursday')
+
+            DayButton:
+                id: Friday
+                text: 'F'
+
+                on_release:
+					root.go_to('friday')
+
+            DayButton:
+                id: Saturday
+                text: 'S'
+
+                on_release:
+					root.go_to('saturday')
+
+            DayButton:
+                id: Sunday
+                text: 'S'
+
+                on_release:
+					root.go_to('sunday')
+
+        # Back
         Button:
-            text: 'Create alarm'
-            on_press:
-                root.manager.transition.direction = 'left'
-                root.manager.current = 'set_alarm'
-
-        Button:
-            text: 'Go to home'
+            id: Back
+            pos: (656, 24)              # Position in Pixels
+            size_hint_max: (120, 120)   # Size in Pixels
+            
+            # text: 'Settings'
+            background_normal: ICON.BACK
+            
             on_press:
                 root.manager.transition.direction = 'right'
-                root.manager.current = 'home'
+                root.manager.current = 'settings'

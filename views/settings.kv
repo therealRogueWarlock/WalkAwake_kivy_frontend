@@ -68,3 +68,12 @@
             on_release:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'home'
+
+        Button:
+            text: 'Camera'
+            size_hint_max: (32, 32)
+            pos: (32, 32)
+
+            on_release:
+                root.manager.transition.direction = 'up'
+                root.manager.current = 'camera'

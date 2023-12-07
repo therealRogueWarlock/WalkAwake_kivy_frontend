@@ -1,8 +1,8 @@
 class Colour():
-    def rgb_to_scaled(red: int, green: int, blue: int):
+    def rgb_to_scaled(red: int, green: int, blue: int): # type: ignore
         return (red / 255.0, green / 255.0, blue / 255.0)
     
-    def rgba_to_scaled(red: int, green: int, blue: int, alpha: int):
+    def rgba_to_scaled(red: int, green: int, blue: int, alpha: int): # type: ignore
         return (red / 255.0, green / 255.0, blue / 255.0, alpha / 100.0)
 
     BACKGROUND = rgb_to_scaled(62, 139, 175)    # 3E8BAF
@@ -27,18 +27,27 @@ class Size():
 
 
 class Icons():
+    # Default Path for Icons
     PATH = './views/icons'
-    HOME = f'{PATH}/home.png'
-    BACK = f'{PATH}/back_arrow.png'
-    SETTINGS = f'{PATH}/settings.png'
 
-    CONFIRM = f'{PATH}/plus.png'
+    # Screen Icons
+    HOME = f'{PATH}/home.png'
+    SETTINGS = f'{PATH}/settings.png'
+    
+    # Arrows
+    NEXT = f'{PATH}/arrow_right.png'
+    BACK = f'{PATH}/arrow_left.png'
+
+    # Prompts
+    CONFIRM = f'{PATH}/confirm.png'
     CANCEL = f'{PATH}/cancel.png'
 
-    PLUS = f'{PATH}/plus.png'
+    # Interaction
+    ADD = f'{PATH}/plus.png'
     SOUND_OFF = f'{PATH}/sound_off.png'
+    DROPDOWN = f'{PATH}/dropdown.png'
 
+    # Days
     ROUND_BUTTON_ENABLED = f'{PATH}/day_enabled.png'
     ROUND_BUTTON_DISABLED = f'{PATH}/day_disabled.png'
 
-    DROPDOWN = f'{PATH}/dropdown.png'

@@ -9,14 +9,6 @@
     FloatLayout:
         id: Background
 
-        canvas:
-            Color:
-                rgb: COLOUR.BACKGROUND
-
-            Rectangle:
-                pos: (0, 0)
-                size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
-
         Header:
             id: Header
             
@@ -31,49 +23,49 @@
                 text: 'M'
 
                 on_release:
-					root.go_to('monday')
+					root.toggle('monday')
 
             DayButton:
                 id: Tuesday
                 text: 'T'
 
                 on_release:
-					root.go_to('tuesday')
+					root.toggle('tuesday')
 
             DayButton:
                 id: Wednesday
                 text: 'W'
 
                 on_release:
-					root.go_to('wednesday')
+					root.toggle('wednesday')
 
             DayButton:
                 id: Thursday
                 text: 'T'
 
                 on_release:
-					root.go_to('thursday')
+					root.toggle('thursday')
 
             DayButton:
                 id: Friday
                 text: 'F'
 
                 on_release:
-					root.go_to('friday')
+					root.toggle('friday')
 
             DayButton:
                 id: Saturday
                 text: 'S'
 
                 on_release:
-					root.go_to('saturday')
+					root.toggle('saturday')
 
             DayButton:
                 id: Sunday
                 text: 'S'
 
                 on_release:
-					root.go_to('sunday')
+					root.toggle('sunday')
 
         # Cancel
         Button:

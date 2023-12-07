@@ -1,5 +1,5 @@
 from kivy.uix.screenmanager import Screen
-
+from kivy.core.window import Window
 
 class Settings(Screen):
     name = 'settings'
@@ -9,5 +9,6 @@ class Settings(Screen):
         
         self.ids.Header.text = 'Settings'
 
-    def on_pre_enter(self):
-        print("Maybe preload Settings?")
+    def on_enter(self, *args):
+        Window.clear()
+        return super().on_enter(*args)

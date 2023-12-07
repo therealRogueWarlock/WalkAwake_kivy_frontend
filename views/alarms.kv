@@ -8,16 +8,6 @@
 #: include views/components/header.kv
 <Alarms>:
     FloatLayout:
-        id: Background
-
-        canvas:
-            Color:
-                rgb: COLOUR.BACKGROUND
-
-            Rectangle:
-                pos: (0, 0)
-                size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
-
         Header:
             id: Header
 
@@ -75,6 +65,17 @@
 
                 on_release:
 					root.go_to('sunday')
+
+        # New Alarm
+        Button:
+            background_normal: ICON.PLUS
+            background_down: ICON.PLUS
+            size_hint_max: (120, 120)
+            pos: (536, 24)
+
+            on_release:
+                root.manager.transition.direction = 'up'
+                root.manager.current = 'settings'
 
         # Back
         BackButton:

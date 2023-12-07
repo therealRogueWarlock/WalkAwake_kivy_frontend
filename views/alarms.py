@@ -3,7 +3,7 @@ from theme import Icons
 
 class Alarms(Screen):
     name = 'alarms'
-    days: dict[any, bool] = {}
+    days: dict[str, any] = {}
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

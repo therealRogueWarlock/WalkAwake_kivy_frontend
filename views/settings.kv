@@ -5,18 +5,15 @@
 #: import RESOLUTION theme.Size
 #: include views/components/back_button.kv
 #: include views/components/header.kv
+#: include views/components/background.kv
+
+# ===========================
+# This screen just refuses to
+# work with Window.clearcolor
+# ===========================
+
 <Settings>:
-    FloatLayout:
-        id: Background
-
-        canvas:
-            Color:
-                rgb: COLOUR.BACKGROUND
-
-            Rectangle:
-                pos: (0, 0)
-                size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
-
+    Background:
         Header:
             id: Header
 
@@ -69,6 +66,7 @@
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'home'
 
+        # Debug Button
         Button:
             text: 'Camera'
             size_hint_max: (32, 32)

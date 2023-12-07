@@ -1,7 +1,7 @@
 import os
 import kivy
 from views import Screens
-from theme import Size
+from theme import Size, Colour
 
 kivy.require('1.0.7')
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
@@ -17,6 +17,7 @@ else:
     Window.size = (Size.WIDTH, Size.HEIGHT)
     Window.borderless = True
 
+Window.clearcolor = Colour.BACKGROUND
 
 class MainApp(App):
 

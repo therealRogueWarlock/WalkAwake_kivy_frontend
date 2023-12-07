@@ -153,3 +153,5 @@ cython_debug/
 #.idea/
 .vscode/launch.json
 .vscode/settings.json
+views/delete/new_alarm.kv
+views/delete/new_alarm.py

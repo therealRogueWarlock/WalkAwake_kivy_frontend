@@ -23,61 +23,66 @@
                 text: 'M'
 
                 on_release:
-					root.toggle('monday')
+					root.toggle('Monday')
 
             DayButton:
                 id: Tuesday
                 text: 'T'
 
                 on_release:
-					root.toggle('tuesday')
+					root.toggle('Tuesday')
 
             DayButton:
                 id: Wednesday
                 text: 'W'
 
                 on_release:
-					root.toggle('wednesday')
+					root.toggle('Wednesday')
 
             DayButton:
                 id: Thursday
                 text: 'T'
 
                 on_release:
-					root.toggle('thursday')
+					root.toggle('Thursday')
 
             DayButton:
                 id: Friday
                 text: 'F'
 
                 on_release:
-					root.toggle('friday')
+					root.toggle('Friday')
 
             DayButton:
                 id: Saturday
                 text: 'S'
 
                 on_release:
-					root.toggle('saturday')
+					root.toggle('Saturday')
 
             DayButton:
                 id: Sunday
                 text: 'S'
 
                 on_release:
-					root.toggle('sunday')
+					root.toggle('Sunday')
 
         # Cancel
         Button:
-            text: 'Cancel'
+            background_normal: ICON.CANCEL
+            background_down: ICON.CANCEL
+            size_hint_max: (120, 120)
+            pos: (536, 24)
 
             on_release:
-                root.manager.transition.direction = 'left'
+                root.manager.transition.direction = 'down'
                 root.manager.current = 'alarms'
 
-        Button:
-            text: 'Confirm'
+        BackButton:
+            background_normal: ICON.CONFIRM
+            background_down: ICON.CONFIRM
 
             on_release:
-                root.manager.transition.direction = 'left'
+                root.save_alarm()
+                root.manager.transition.direction = 'down'
                 root.manager.current = 'alarms'

@@ -10,14 +10,21 @@
         Header:
             id: Header
 
+        Label:
+            size_hint_max: (self.width, self.height)
+            text: 'Selected: '
+            pos: (300, 220)
+            color: COLOUR.PRIMARY
+            font_size: FONTSIZE.NM
+
         Spinner:
             id: Timezones
-            size_hint_max: (130, FONTSIZE.XL)
-            pos: (400, 200)
-            background_color: COLOUR.ACCENT
+            size_hint_max: (150, FONTSIZE.XL)
+            pos: (400, 230)
+            color: COLOUR.PRIMARY
             background_normal: ICON.DROPDOWN
             background_down: ICON.DROPDOWN
-            text: 'Click Here'
+            text: 'Click Here      '
             # ================================= #
             # Programatically addeded timezones #
             # ================================= #

@@ -1,6 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.spinner import Spinner, SpinnerOption
-from theme import Text, Colour
+from theme import Colour
 
 
 # time_settings

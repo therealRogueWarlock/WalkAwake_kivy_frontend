@@ -5,7 +5,7 @@ from theme import Icons
 # set_alarm_for
 class SetAlarmFor(Screen):
     name = 'set_alarm_for'
-    days_bind: dict[str, any] ={}
+    days_bind: dict = {}
     days: dict = {
         'monday': False,
         'tuesday': False,

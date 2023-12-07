@@ -1,2 +1,32 @@
 #:kivy 1.0
-<NewAlarm>
+#: import COLOUR theme.Colour
+#: import ICON theme.Icons
+#: import FONTSIZE theme.Text
+#: import RESOLUTION theme.Size
+#: include views/components/back_button.kv
+#: include views/components/header.kv
+#: include views/components/background.kv
+<NewAlarm>:
+    FloatLayout:
+        Header:
+            id: Header
+
+        # Cancel
+        Button:
+            background_normal: ICON.CANCEL
+            background_down: ICON.CANCEL
+            size_hint_max: (120, 120)
+            pos: (536, 24)
+
+            on_release:
+                root.manager.transition.direction = 'down'
+                root.manager.current = 'alarms'
+
+        # Next Step
+        BackButton:
+            background_normal: ICON.NEXT
+            background_down: ICON.NEXT
+
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'set_alarm_for'

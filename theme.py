@@ -40,3 +40,5 @@ class Icons():
 
     ROUND_BUTTON_ENABLED = f'{PATH}/day_enabled.png'
     ROUND_BUTTON_DISABLED = f'{PATH}/day_disabled.png'
+
+    DROPDOWN = f'{PATH}/dropdown.png'

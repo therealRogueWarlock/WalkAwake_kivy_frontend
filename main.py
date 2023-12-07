@@ -4,7 +4,7 @@ from views import Screens
 from theme import Size, Colour
 
 kivy.require('1.0.7')
-from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
+from kivy.uix.screenmanager import ScreenManager
 from kivy.app import App
 
 from kivy.core.window import Window

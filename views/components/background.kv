@@ -1,11 +1,2 @@
-#:kivy 1.0
-#: import COLOUR theme.Colour
-#: import RESOLUTION theme.Size
-<Background@FloatLayout>:
-    canvas:
-        Color:
-            rgb: COLOUR.BACKGROUND
-
-        Rectangle:
-            pos: (0, 0)
-            size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
+<Background@MDFloatLayout>:
+    md_bg_color: app.theme_cls.primary_color

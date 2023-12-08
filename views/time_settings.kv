@@ -1,6 +1,5 @@
 #: import COLOUR theme.Colours
 #: import ICON theme.Icons
-#: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
 #: include views/components/back_button.kv
 <TimeSettings>:
@@ -22,20 +21,6 @@
             
             on_press:
                 root.open_menu()
-
-        # Spinner:
-        #     id: Timezones
-        #     size_hint_max: (150, FONTSIZE.XL)
-        #     pos: (400, 230)
-        #     # color: COLOUR.PRIMARY
-        #     background_normal: ICON.DROPDOWN
-        #     background_down: ICON.DROPDOWN
-        #     text: 'Click Here      '
-        #     # ================================= #
-        #     # Programatically addeded timezones #
-        #     # ================================= #
-        #     on_text:
-        #         root.spinner_clicked(root.ids.Timezones.text)
 
         BackButton:
             on_press:

@@ -1,32 +1,87 @@
-#:kivy 1.0
-#: import COLOUR theme.Colour
+#: import COLOUR theme.Colours
 #: import ICON theme.Icons
-#: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
 #: include views/components/back_button.kv
 #: include views/components/header.kv
 #: include views/components/background.kv
 <NewAlarm>:
-    FloatLayout:
+    Background:
         Header:
             id: Header
 
+        # Time Picker
+
+
+        # Day Selector
+        MDBoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            spacing: '24px'
+            adaptive_size: True
+
+            DayButton:
+                id: Monday
+                text: 'M'
+
+                on_press:
+					root.toggle('Monday')
+
+            DayButton:
+                id: Tuesday
+                text: 'T'
+
+                on_press:
+					root.toggle('Tuesday')
+
+            DayButton:
+                id: Wednesday
+                text: 'W'
+
+                on_press:
+					root.toggle('Wednesday')
+
+            DayButton:
+                id: Thursday
+                text: 'T'
+
+                on_press:
+					root.toggle('Thursday')
+
+            DayButton:
+                id: Friday
+                text: 'F'
+
+                on_press:
+					root.toggle('Friday')
+
+            DayButton:
+                id: Saturday
+                text: 'S'
+
+                on_press:
+					root.toggle('Saturday')
+
+            DayButton:
+                id: Sunday
+                text: 'S'
+
+                on_press:
+					root.toggle('Sunday')
+
         # Cancel
-        Button:
-            background_normal: ICON.CANCEL
-            background_down: ICON.CANCEL
-            size_hint_max: (120, 120)
+        IconButton:
+            icon: ICON.CANCEL
             pos: (536, 24)
 
-            on_release:
+            on_press:
                 root.manager.transition.direction = 'down'
                 root.manager.current = 'alarms'
 
-        # Next Step
+        # Confirm
         BackButton:
-            background_normal: ICON.NEXT
-            background_down: ICON.NEXT
+            icon: ICON.CONFIRM
 
-            on_release:
-                root.manager.transition.direction = 'left'
-                root.manager.current = 'set_alarm_for'
+            on_press:
+                root.save_alarm()
+                root.manager.transition.direction = 'down'
+                root.manager.current = 'alarms'

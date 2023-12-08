@@ -1,36 +1,28 @@
-#:kivy 1.0
-#: import COLOUR theme.Colour
+#: import COLOUR theme.Colours
 #: import ICON theme.Icons
-#: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
 #: include views/components/back_button.kv
 <TimeSettings>:
-    FloatLayout:
+    Background:
         Header:
             id: Header
 
-        Label:
+        MDLabel:
             size_hint_max: (self.width, self.height)
             text: 'Selected: '
+            font_style: 'H5'
             pos: (300, 220)
-            color: COLOUR.PRIMARY
-            font_size: FONTSIZE.NM
 
-        Spinner:
-            id: Timezones
-            size_hint_max: (150, FONTSIZE.XL)
-            pos: (400, 230)
-            color: COLOUR.PRIMARY
-            background_normal: ICON.DROPDOWN
-            background_down: ICON.DROPDOWN
-            text: 'Click Here      '
-            # ================================= #
-            # Programatically addeded timezones #
-            # ================================= #
-            on_text:
-                root.spinner_clicked(root.ids.Timezones.text)
+        MDDropDownItem:
+            id: SelectedTimezone
+            size_hint_max: (self.width, self.height)
+            pos: (420, 255)
+            text: 'Select'
+            
+            on_press:
+                root.open_menu()
 
         BackButton:
-            on_release:
+            on_press:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'settings'

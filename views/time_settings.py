@@ -1,21 +1,19 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.spinner import Spinner, SpinnerOption
-from theme import Colour
-
+from theme import Colours
+from kivymd.uix.menu import MDDropdownMenu
 
 # time_settings
 class TimeSettings(Screen):
     name = 'time_settings'
-    selected_timezone: str = None
+    selected_timezone: str = ''
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         self.ids.Header.text = 'Timezone'
-        
-    def on_pre_enter(self, *args):
-        self.setup_spinner_options()
 
+    def on_pre_enter(self, *args):
         self.add_timezones()
     
         return super().on_pre_enter(*args)
@@ -23,30 +21,28 @@ class TimeSettings(Screen):
     def on_pre_leave(self, *args):
         # Save the Settings to C++
         print(f'Selected Timezone: {self.selected_timezone}')
+        
         return super().on_pre_leave(*args)
 
-    def setup_spinner_options(self):
-        # Save option for Intellisense
-        spinner: Spinner = self.ids.Timezones
-        option: SpinnerOption = spinner.option_cls
-
-        # Images
-        option.background_normal = ''
-        # Colours
-        option.background_color = Colour.INVISIBLE
-        option.outline_width = 2
-        option.outline_color = Colour.ACCENT
-
     def add_timezones(self) -> None:
-        for i in range(-11, 13):
-            prefix = '-' if i < 0 else '+'  # Ternary
-            value = i.__abs__()             # Absolute Value
-            
-            text = f'GMT{prefix}{value}'    # Combing GMT & Prefix & Value
+        tmp_items = [
+            {
+                'viewclass': 'OneLineListItem',
+                'text': self.gmt_ify(i),
+                'on_release': lambda val=i: self.select(self.gmt_ify(val)),
+            }
+            for i in range(-11, 13) # Ah yes, Python...
+        ]
 
-            self.ids.Timezones.values.append(text)
+        self.timezones: MDDropdownMenu = MDDropdownMenu(caller=self.ids.SelectedTimezone, items=tmp_items, width_mult=2)
      
-    def spinner_clicked(self, value):
-        self.selected_timezone = value
-        pass
+    def open_menu(self) -> None:
+        self.timezones.open()
 
+    def gmt_ify(self, time) -> str:
+        return f'GMT{"-" if time < 0 else "+"}{time.__abs__()}'
+    
+    def select(self, selected):
+        self.selected_timezone = selected
+        self.ids.SelectedTimezone.text = selected
+        self.timezones.dismiss()

@@ -1,70 +1,51 @@
-#:kivy 1.0
-#: import COLOUR theme.Colour
+#: import COLOUR theme.Colours
 #: import ICON theme.Icons
-#: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
 #: include views/components/back_button.kv
 #: include views/components/header.kv
 #: include views/components/background.kv
-
-# ===========================
-# This screen just refuses to
-# work with Window.clearcolor
-# ===========================
-
 <Settings>:
     Background:
         Header:
             id: Header
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: 'vertical'
-            pos: (200, 60)
-            size_hint_max: (300, 240)
+            pos_hint: {'center_x': 0.3,'center_y': 0.4}
+            spacing: '32px'
+            adaptive_size: True
 
-            Button:
-                id: Alarms
-
+            MDTextButton:
                 text: 'Alarms'
-                font_size: FONTSIZE.NM
-                color: COLOUR.PRIMARY
-                background_color: COLOUR.INVISIBLE
+                font_style: 'H4'
 
-                on_release:
+                on_press:
                     root.manager.transition.direction = 'left'
                     root.manager.current = 'alarms'
 
-            Button:
-                id: Time
-
+            MDTextButton:
                 text: 'Timezone'
-                font_size: FONTSIZE.NM
-                color: COLOUR.PRIMARY
-                background_color: COLOUR.INVISIBLE
+                font_style: 'H4'
 
-                on_release:
+                on_press:
                     root.manager.transition.direction = 'left'
                     root.manager.current = 'time_settings'
 
-            Button:
-                id: Wifi
-
+            MDTextButton:
                 text: 'Wifi'
-                font_size: FONTSIZE.NM
-                color: COLOUR.PRIMARY
-                background_color: COLOUR.INVISIBLE
+                font_style: 'H4'
 
-                on_release:
+                on_press:
                     root.manager.transition.direction = 'left'
                     root.manager.current = 'wifi_settings'
 
         # Back
         BackButton:
-            background_normal: ICON.HOME
+            icon: ICON.HOME
 
-            on_release:
+            on_press:
                 root.manager.transition.direction = 'right'
-                root.manager.current = 'settings'
+                root.manager.current = 'home'
 
         # Debug Button
         Button:
@@ -72,6 +53,6 @@
             size_hint_max: (32, 32)
             pos: (32, 32)
 
-            on_release:
+            on_press:
                 root.manager.transition.direction = 'up'
                 root.manager.current = 'camera'

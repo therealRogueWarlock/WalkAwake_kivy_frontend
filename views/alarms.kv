@@ -1,84 +1,80 @@
-#:kivy 1.0
-#: import COLOUR theme.Colour
+#: import COLOUR theme.Colours
 #: import ICON theme.Icons
-#: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
-#: include views/components/day_button.kv
-#: include views/components/back_button.kv
-#: include views/components/header.kv
+#:include views/components/day_button.kv
+#:include views/components/back_button.kv
+#:include views/components/header.kv
 <Alarms>:
-    FloatLayout:
+    Background:
         Header:
             id: Header
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: 'horizontal'
-            pos: (0, (RESOLUTION.HEIGHT - 96)/2)
-            size_hint_max: (RESOLUTION.WIDTH, 96)
-            padding: (50, 0)
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            spacing: '24px'
+            adaptive_size: True
 
             DayButton:
                 id: Monday
                 text: 'M'
 
-                on_release:
+                on_press:
 					root.go_to('monday')
 
             DayButton:
                 id: Tuesday
                 text: 'T'
 
-                on_release:
+                on_press:
 					root.go_to('tuesday')
 
             DayButton:
                 id: Wednesday
                 text: 'W'
 
-                on_release:
+                on_press:
 					root.go_to('wednesday')
 
             DayButton:
                 id: Thursday
                 text: 'T'
 
-                on_release:
+                on_press:
 					root.go_to('thursday')
 
             DayButton:
                 id: Friday
                 text: 'F'
 
-                on_release:
+                on_press:
 					root.go_to('friday')
 
             DayButton:
                 id: Saturday
                 text: 'S'
 
-                on_release:
+                on_press:
 					root.go_to('saturday')
 
             DayButton:
                 id: Sunday
                 text: 'S'
 
-                on_release:
+                on_press:
 					root.go_to('sunday')
 
         # New Alarm
-        Button:
-            background_normal: ICON.ADD
-            background_down: ICON.ADD
-            size_hint_max: (120, 120)
+        IconButton:
+            icon: ICON.ADD
             pos: (536, 24)
 
-            on_release:
+            on_press:
                 root.manager.transition.direction = 'up'
                 root.manager.current = 'new_alarm'
 
         # Back
         BackButton:
-            on_release:
+            on_press:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'settings'

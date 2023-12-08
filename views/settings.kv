@@ -12,13 +12,13 @@
 
         MDBoxLayout:
             orientation: 'vertical'
-            pos_hint: {'center_x': 0.3,'center_y': 0.5}
-            spacing: '24px'
+            pos_hint: {'center_x': 0.3,'center_y': 0.4}
+            spacing: '32px'
             adaptive_size: True
 
             MDTextButton:
                 text: 'Alarms'
-                font_style: 'H5'
+                font_style: 'H4'
 
                 on_press:
                     root.manager.transition.direction = 'left'
@@ -26,7 +26,7 @@
 
             MDTextButton:
                 text: 'Timezone'
-                font_style: 'H5'
+                font_style: 'H4'
 
                 on_press:
                     root.manager.transition.direction = 'left'
@@ -34,7 +34,7 @@
 
             MDTextButton:
                 text: 'Wifi'
-                font_style: 'H5'
+                font_style: 'H4'
 
                 on_press:
                     root.manager.transition.direction = 'left'

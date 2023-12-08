@@ -10,7 +10,8 @@
             id: Header
 
         # Time Picker
-
+        MDIconButton:
+            icon: 'arrow-left' # ICON.BACK
 
         # Day Selector
         MDBoxLayout:
@@ -70,7 +71,7 @@
 
         # Cancel
         IconButton:
-            icon: ICON.CANCEL
+            icon: 'close' # ICON.CANCEL
             pos: (536, 24)
 
             on_press:
@@ -79,7 +80,7 @@
 
         # Confirm
         BackButton:
-            icon: ICON.CONFIRM
+            icon: 'check' # ICON.CONFIRM
 
             on_press:
                 root.save_alarm()

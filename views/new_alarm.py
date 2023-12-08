@@ -2,11 +2,12 @@ from kivy.uix.screenmanager import Screen
 from kivymd.uix.pickers import MDTimePicker
 
 from datetime import time
+from model.alarm_manager import AlarmManager
 from theme import Colours
 
 class NewAlarm(Screen):
     name = 'new_alarm'
-    selected_time: str
+    selected_time: time
     days_bind: dict = {}
     days: dict[str, bool] = {
         'Monday': False,
@@ -17,8 +18,9 @@ class NewAlarm(Screen):
         'Saturday': False,
         'Sunday': False
     }
-
     time_picker: MDTimePicker
+
+    alarm_manager: AlarmManager
 
     def __init__(self, **kw):
         super().__init__(**kw)
@@ -28,6 +30,8 @@ class NewAlarm(Screen):
         self.time_picker = MDTimePicker()
         self.time_picker.bind(time=self.get_time)
 
+        self.alarm_manager = AlarmManager()
+
 
     def on_pre_enter(self, *args):
         self.disable_all()
@@ -35,7 +39,7 @@ class NewAlarm(Screen):
 
 
     def get_time(self, instance, time):
-        self.selected_time = str(time)
+        self.selected_time = time
         formatted_time = time.strftime('%H:%M')
         self.ids.TimeButton.text = formatted_time
 
@@ -77,4 +81,5 @@ class NewAlarm(Screen):
 
         print('Alarms Created:')
         _ = [print(f'\t{day}: {self.selected_time}') for day in selected_days] 
+        [self.alarm_manager.set_alarm(day, self.selected_time) for day in selected_days]
         pass

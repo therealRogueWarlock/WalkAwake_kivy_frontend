@@ -1,9 +1,12 @@
 from kivy.uix.screenmanager import Screen
+from kivymd.uix.pickers import MDTimePicker
 
+from datetime import time
 from theme import Colours
 
 class NewAlarm(Screen):
     name = 'new_alarm'
+    selected_time: str
     days_bind: dict = {}
     days: dict[str, bool] = {
         'Monday': False,
@@ -15,17 +18,26 @@ class NewAlarm(Screen):
         'Sunday': False
     }
 
+    time_picker: MDTimePicker
+
     def __init__(self, **kw):
         super().__init__(**kw)
     
         self.ids.Header.text = 'New Alarm'
         self.bind_days()
+        self.time_picker = MDTimePicker()
+        self.time_picker.bind(time=self.get_time)
 
 
     def on_pre_enter(self, *args):
         self.disable_all()
-
         return super().on_pre_enter(*args)
+
+
+    def get_time(self, instance, time):
+        self.selected_time = str(time)
+        formatted_time = time.strftime('%H:%M')
+        self.ids.TimeButton.text = formatted_time
 
 
     def bind_days(self) -> None:
@@ -56,10 +68,13 @@ class NewAlarm(Screen):
 
         return
 
-    def update_background(self, day: str, enabled: bool):
+    def update_background(self, day: str, enabled: bool) -> None:
         self.days_bind[day].md_bg_color = Colours.ENABLED if enabled else Colours.DISABLED
 
-    def save_alarm(self):
+    def save_alarm(self) -> None:
         # Add Logic to Save the Dates
-        print('\"saving\"...')
+        selected_days = [str(day) for day in self.days if self.days[day]]
+
+        print('Alarms Created:')
+        _ = [print(f'\t{day}: {self.selected_time}') for day in selected_days] 
         pass

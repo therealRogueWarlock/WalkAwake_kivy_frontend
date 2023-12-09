@@ -1,6 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivy.clock import Clock
-
+from WalkAwake import ComputerVisionManager
 
 # camera
 class Camera(Screen):
@@ -8,7 +8,8 @@ class Camera(Screen):
 
     def __init__(self, **kw):
         super().__init__(**kw)
-
+        self.computer_vision_manager = ComputerVisionManager()
+        self.feed_path = "/opt/camera_feed/"
         self.FPS = 15
         # testing
         self.img_counter_start = 97
@@ -17,20 +18,22 @@ class Camera(Screen):
 
     def on_pre_enter(self):
         # Start Camera Scheduler
+        self.computer_vision_manager.Start(self.feed_path)
         Clock.schedule_interval(lambda dt: self.update_image_view(), 1/self.FPS)
 
     def on_pre_leave(self):
         # Stop Camera Scheduler
+        self.computer_vision_manager.Stop()
         pass
 
     def capture(self):
         # call model layer to capture image
-        pass
+        self.computer_vision_manager.VerifyImage("sink", "/opt/camera_feed/")
 
     def update_image_view(self):
         image_view = self.ids.imageView
         # testing
         self.img_counter += 1
-        image_view.source = f"C:/Users/sande/Pictures/Screenshots/Screenshot ({self.img_counter}).png"
+        image_view.source = self.feed_path + "/image_capture.jpg"
         if self.img_counter == self.img_counter_max:
             self.img_counter = self.img_counter_start

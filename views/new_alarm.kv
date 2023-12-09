@@ -10,7 +10,23 @@
             id: Header
 
         # Time Picker
+        MDRoundFlatIconButton:
+            id: TimeButton
 
+            icon: 'clock'
+            icon_size: '48px'
+            icon_color: COLOUR.ACCENT
+
+            text: '00:00'
+            text_color: 'black'
+            
+            line_color: COLOUR.ACCENT
+            line_width: 2
+
+            pos_hint: {'right': .7,'top': .8}
+
+            on_press:
+                root.time_picker.open()
 
         # Day Selector
         MDBoxLayout:
@@ -70,7 +86,7 @@
 
         # Cancel
         IconButton:
-            icon: ICON.CANCEL
+            icon: 'close' # ICON.CANCEL
             pos: (536, 24)
 
             on_press:
@@ -79,7 +95,7 @@
 
         # Confirm
         BackButton:
-            icon: ICON.CONFIRM
+            icon: 'check' # ICON.CONFIRM
 
             on_press:
                 root.save_alarm()

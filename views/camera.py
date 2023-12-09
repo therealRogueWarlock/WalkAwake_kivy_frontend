@@ -12,6 +12,7 @@ class Camera(Screen):
         self.feed_path = "/home/sander/camera_feed"
         self.capture_path = "/home/sander/camera_capture"
         self.FPS = 15
+        self.loop = None
         # testing
         self.img_counter_start = 97
         self.img_counter = self.img_counter_start
@@ -20,7 +21,7 @@ class Camera(Screen):
     def on_pre_enter(self):
         # Start Camera Scheduler
         #self.computer_vision_manager.Start(self.feed_path)
-        Clock.schedule_interval(lambda dt: self.update_image_view(), 1/self.FPS)
+        self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1/self.FPS)
 
     def on_pre_leave(self):
         # Stop Camera Scheduler
@@ -29,6 +30,7 @@ class Camera(Screen):
 
     def capture(self):
         # call model layer to capture image
+        self.loop.cancel()
         self.computer_vision_manager.VerifyImage("sink", self.capture_path)
 
     def update_image_view(self):

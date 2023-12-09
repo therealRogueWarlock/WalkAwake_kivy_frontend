@@ -1,77 +1,58 @@
-#:kivy 1.0
-#: import COLOUR theme.Colour
+#: import COLOUR theme.Colours
 #: import ICON theme.Icons
-#: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
+#: include views/components/back_button.kv
+#: include views/components/header.kv
+#: include views/components/background.kv
 <Settings>:
-    FloatLayout:
-        id: Background
-
-        canvas:
-            Color:
-                rgb: COLOUR.BACKGROUND
-
-            Rectangle:
-                pos: (0, 0)
-                size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
-
-        Label:
+    Background:
+        Header:
             id: Header
-            pos: (-224, 144)
 
-            font_size: FONTSIZE.XL
-            color: COLOUR.PRIMARY
-
-        BoxLayout:
+        MDBoxLayout:
             orientation: 'vertical'
-            pos: (200, 60)
-            size_hint_max: (300, 240)
+            pos_hint: {'center_x': 0.3,'center_y': 0.4}
+            spacing: '32px'
+            adaptive_size: True
 
-            Button:
-                id: Alarms
-
+            MDTextButton:
                 text: 'Alarms'
-                font_size: FONTSIZE.NM
-                color: COLOUR.PRIMARY
-                background_color: COLOUR.INVISIBLE
+                font_style: 'H4'
 
                 on_press:
-                    root.manager.transition.direction = 'right'
+                    root.manager.transition.direction = 'left'
                     root.manager.current = 'alarms'
 
-            Button:
-                id: Time
-
+            MDTextButton:
                 text: 'Timezone'
-                font_size: FONTSIZE.NM
-                color: COLOUR.PRIMARY
-                background_color: COLOUR.INVISIBLE
+                font_style: 'H4'
 
                 on_press:
-                    root.manager.transition.direction = 'right'
+                    root.manager.transition.direction = 'left'
                     root.manager.current = 'time_settings'
 
-            Button:
-                id: Wifi
-
-                text: 'WiFi'
-                font_size: FONTSIZE.NM
-                color: COLOUR.PRIMARY
-                background_color: COLOUR.INVISIBLE
+            MDTextButton:
+                text: 'Wifi'
+                font_style: 'H4'
 
                 on_press:
-                    root.manager.transition.direction = 'right'
+                    root.manager.transition.direction = 'left'
                     root.manager.current = 'wifi_settings'
 
         # Back
-        Button:
-            id: Back
-            pos: (656, 24)              # Position in Pixels
-            size_hint_max: (120, 120)   # Size in Pixels
-            
-            # text: 'Settings'
-            background_normal: ICON.HOME
-            
+        BackButton:
+            icon: ICON.HOME
+
             on_press:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'home'
+
+        # Debug Button
+        Button:
+            text: 'Camera'
+            size_hint_max: (32, 32)
+            pos: (32, 32)
+
+            on_press:
+                root.manager.transition.direction = 'up'
+                root.manager.current = 'camera'

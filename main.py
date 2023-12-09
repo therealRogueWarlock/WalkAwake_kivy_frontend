@@ -1,26 +1,34 @@
 import os
 import kivy
 from views import Screens
-from theme import Size
+from theme import Size, Colours
 
-kivy.require('1.0.7')
-from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
-from kivy.app import App
-
+kivy.require('2.0.0')
+from kivy.uix.screenmanager import ScreenManager
 from kivy.core.window import Window
 
-if os.name == 'posix':
-    Window.fullscreen = 'auto'
-    Window.always_on_top = True
-    Window.show_cursor = False
-else:
-    Window.size = (Size.WIDTH, Size.HEIGHT)
-    Window.borderless = True
+from kivymd.app import MDApp
+
+def kivy_setup():
+    # Development stuff
+    if os.name == 'posix': # Linux
+        Window.fullscreen = 'auto'
+        Window.always_on_top = True
+        Window.show_cursor = False
+    else: # Not Linux
+        Window.size = (Size.WIDTH, Size.HEIGHT)
+        Window.borderless = True
+
+    # Window.clearcolor = Colour.BACKGROUND
 
 
-class MainApp(App):
 
+class MainApp(MDApp):
     def build(self):
+        self.theme_cls.primary_palette = 'LightBlue'
+        self.theme_cls.accent_palette = 'Brown'
+
+        # Screenmanager
         screen_manager = ScreenManager()
         screen_manager.transition.duration = .15
         for screen in Screens:
@@ -29,4 +37,5 @@ class MainApp(App):
 
 
 if __name__ == '__main__':
+    kivy_setup()
     MainApp().run()

@@ -1,66 +1,54 @@
-#:kivy 1.0
-#: import COLOUR theme.Colour
+#: import COLOUR theme.Colours
 #: import ICON theme.Icons
-#: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
 <Home>:
-    FloatLayout:
+    Background:
         id: Background
 
-        canvas:
-            Color:
-                rgb: COLOUR.BACKGROUND    # Background Colour
-
-            Rectangle:
-                pos: (0, 0)
-                size: (RESOLUTION.WIDTH, RESOLUTION.HEIGHT)
-
         # Current Time
-        Label:
+        Header:
             id: CurrentTime
-            pos: (-224, 144)
-
-            font_size: FONTSIZE.XL
-            color: COLOUR.PRIMARY
 
         # Label
-        Label:
+        MDLabel:
             id: Date
-            pos: (-220, 100)
+            pos: (120, 320)
 
-            font_size: FONTSIZE.NM
-            color: COLOUR.PRIMARY
+            font_style: 'H6'
+            text_size: self.size
 
-        BoxLayout:
-            orientation: 'vertical'
-            pos: (0, 20)
-            size_hint_max: (200, 50)
+        MDBoxLayout:
+            orientation: 'horizontal'
+            pos: (20, 20)
+            adaptive_height: True
+            size_hint_max: (200, None)
 
             # Next
-            Label:
-                id: Next
-
-                text: 'Next'
-                font_size: FONTSIZE.SM
-                color: COLOUR.ACCENT
+            MDLabel:
+                text: 'Next: '
+                font_style: 'Subtitle1'
+                theme_text_color: 'Custom'
+                text_color: COLOUR.ACCENT
                 bold: True
 
+                halign: 'right'
+                size_hint_max_x: 64
+
             # Next Alarm
-            Label:
+            MDLabel:
                 id: NextAlarm
 
-                font_size: FONTSIZE.SM
-                color: COLOUR.ACCENT
+                font_style: 'Subtitle1'
+                theme_text_color: 'Custom'
+                text_color: COLOUR.ACCENT
                 italic: True
 
         # Settings
-        Button:
+        IconButton:
             id: Settings
-            pos: (656, 24)              # Position in Pixels
-            size_hint_max: (120, 120)   # Size in Pixels
             
             # text: 'Settings'
-            background_normal: ICON.SETTINGS
+            icon: ICON.SETTINGS
             
             on_press:
                 root.manager.transition.direction = 'left'

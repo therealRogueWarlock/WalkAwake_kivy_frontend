@@ -1,9 +1,9 @@
 from kivy.uix.screenmanager import Screen
-from theme import Icons
+from theme import Colours
 
 class Alarms(Screen):
     name = 'alarms'
-    days: dict[any, bool] = {}
+    days: dict = {}
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -25,11 +25,9 @@ class Alarms(Screen):
 
     def disable_all(self) -> None:
         for day, btn in self.days.items():
-            btn.background_normal = Icons.ROUND_BUTTON_DISABLED
-            btn.background_down = Icons.ROUND_BUTTON_ENABLED
+            btn.md_bg_color = Colours.DISABLED
             if day == 'Monday':
-                btn.background_normal = Icons.ROUND_BUTTON_ENABLED
-                btn.background_down = Icons.ROUND_BUTTON_DISABLED
+                btn.md_bg_color = Colours.ENABLED
                 
         pass
 

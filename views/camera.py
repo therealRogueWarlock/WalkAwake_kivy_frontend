@@ -32,7 +32,7 @@ class Camera(Screen):
         # call model layer to capture image
         self.loop.cancel()
         result = self.computer_vision_manager.VerifyImage("sink", self.capture_path)
-        print("Result from verify" + result)
+        print("Result from verify" + str(result))
         self.ids.imageView.source = self.capture_path + "/image_capture.jpg"
         
     def update_image_view(self):

@@ -9,7 +9,8 @@ class Camera(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
         self.computer_vision_manager = ComputerVisionManager()
-        self.feed_path = "/opt/camera_feed/"
+        self.feed_path = "/home/sander/camera_feed"
+        self.capture_path = "/home/sander/camera_capture"
         self.FPS = 15
         # testing
         self.img_counter_start = 97
@@ -18,17 +19,17 @@ class Camera(Screen):
 
     def on_pre_enter(self):
         # Start Camera Scheduler
-        self.computer_vision_manager.Start(self.feed_path)
+        #self.computer_vision_manager.Start(self.feed_path)
         Clock.schedule_interval(lambda dt: self.update_image_view(), 1/self.FPS)
 
     def on_pre_leave(self):
         # Stop Camera Scheduler
-        self.computer_vision_manager.Stop()
+        #self.computer_vision_manager.Stop()
         pass
 
     def capture(self):
         # call model layer to capture image
-        self.computer_vision_manager.VerifyImage("sink", "/opt/camera_feed/")
+        self.computer_vision_manager.VerifyImage("sink", self.capture_path)
 
     def update_image_view(self):
         image_view = self.ids.imageView

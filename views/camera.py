@@ -20,6 +20,7 @@ class Camera(Screen):
 
     def on_pre_enter(self):
         # Start Camera Scheduler
+        self.ids.imageView.source = self.capture_path + "/image_capture.jpg"
         #self.computer_vision_manager.Start(self.feed_path)
         self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1/self.FPS)
 
@@ -35,7 +36,7 @@ class Camera(Screen):
         print("Result from verify" + str(result))
         self.ids.imageView.source = ""
         self.ids.imageView.source = self.capture_path + "/image_capture.jpg"
-        
+
     def update_image_view(self):
         image_view = self.ids.imageView
         # testing

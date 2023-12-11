@@ -15,12 +15,14 @@ class Camera(Screen):
         self.FPS = 15
         self.loop = None
         self.targets = ["sink", "toilet", "toothbrush", "refrigerator"]
+        self.target = None
         # testing
         self.img_counter_start = 97
         self.img_counter = self.img_counter_start
         self.img_counter_max = 303
 
     def on_pre_enter(self):
+        self.target = self.targets[1]
         # Start Camera Scheduler
         self.ids.imageView.source = self.capture_path + "/image_capture.jpg"
         #self.computer_vision_manager.Start(self.feed_path)
@@ -34,7 +36,7 @@ class Camera(Screen):
     def capture(self):
         # call model layer to capture image
         #self.loop.cancel()
-        result = self.computer_vision_manager.VerifyImage("sink", self.capture_path)
+        result = self.computer_vision_manager.VerifyImage(self.target, self.capture_path)
         print("Result from verify " + str(result))
 
         self.ids.imageView.source = Icons.ADD

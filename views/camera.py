@@ -17,7 +17,8 @@ class Camera(Screen):
 
     def on_pre_enter(self):
         # Start Camera Scheduler
-        Clock.schedule_interval(lambda dt: self.update_image_view(), 1/self.FPS)
+        pass
+        # Clock.schedule_interval(lambda dt: self.update_image_view(), 1/self.FPS)
 
     def on_pre_leave(self):
         # Stop Camera Scheduler

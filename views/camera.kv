@@ -1,19 +1,28 @@
-#: import COLOUR theme.Colours
-#: import ICON theme.Icons
-#: import RESOLUTION theme.Size
+#:import COLOUR theme.Colours
 <Camera>
-    FloatLayout:
-        Image:
-            id: imageView
-            source: 'C:/Users/sande/PycharmProjects/Kivy-GTFU-frontend/kitchen.jpg'
+    Background:
+        
+        # Image:
+        #     id: imageView
+        #     source: 'C:/Users/sande/PycharmProjects/Kivy-GTFU-frontend/kitchen.jpg'
 
+        MDLabel:
+            size_hint_max: (None, self.height)
+            pos_hint: {'center_x': 0.5,'top': 0.9}
+            halign: 'center'
+            
+            text: "Target: ???"
+            font_style: 'H4'
+            color: COLOUR.ACCENT
+            
+            
+            md_bg_color: 'magenta'
 
-        Button:
+        BackButton:
             text: 'Capture'
-            size_hint_max: (120,120)
-            pos:(656, 24)
-            background_normal: ICON.ADD
+            icon: 'plus'
 
-            on_press: root.capture()
+            on_press:
+                root.capture()
 
 

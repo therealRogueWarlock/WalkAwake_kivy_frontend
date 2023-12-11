@@ -1,14 +1,34 @@
 #: import COLOUR theme.Colours
 #: import ICON theme.Icons
 #: import RESOLUTION theme.Size
-#:include views/components/day_button.kv
-#:include views/components/back_button.kv
-#:include views/components/header.kv
-<Alarms>:
+#: include views/components/back_button.kv
+#: include views/components/header.kv
+#: include views/components/background.kv
+<NewAlarm>:
     Background:
         Header:
             id: Header
 
+        # Time Picker
+        MDRoundFlatIconButton:
+            id: TimeButton
+
+            icon: 'clock'
+            icon_size: '48px'
+            icon_color: COLOUR.ACCENT
+
+            text: '00:00'
+            text_color: 'black'
+            
+            line_color: COLOUR.ACCENT
+            line_width: 2
+
+            pos_hint: {'right': .7,'top': .8}
+
+            on_press:
+                root.time_picker.open()
+
+        # Day Selector
         MDBoxLayout:
             orientation: 'horizontal'
             pos_hint: {'center_x': 0.5,'center_y': 0.5}
@@ -20,61 +40,64 @@
                 text: 'M'
 
                 on_press:
-					root.go_to('monday')
+					root.toggle('Monday')
 
             DayButton:
                 id: Tuesday
                 text: 'T'
 
                 on_press:
-					root.go_to('tuesday')
+					root.toggle('Tuesday')
 
             DayButton:
                 id: Wednesday
                 text: 'W'
 
                 on_press:
-					root.go_to('wednesday')
+					root.toggle('Wednesday')
 
             DayButton:
                 id: Thursday
                 text: 'T'
 
                 on_press:
-					root.go_to('thursday')
+					root.toggle('Thursday')
 
             DayButton:
                 id: Friday
                 text: 'F'
 
                 on_press:
-					root.go_to('friday')
+					root.toggle('Friday')
 
             DayButton:
                 id: Saturday
                 text: 'S'
 
                 on_press:
-					root.go_to('saturday')
+					root.toggle('Saturday')
 
             DayButton:
                 id: Sunday
                 text: 'S'
 
                 on_press:
-					root.go_to('sunday')
+					root.toggle('Sunday')
 
-        # New Alarm
+        # Cancel
         IconButton:
-            icon: 'plus' # ICON.ADD
+            icon: 'close' # ICON.CANCEL
             pos: (536, 24)
 
             on_press:
-                root.manager.transition.direction = 'up'
-                root.manager.current = 'new_alarm'
+                root.manager.transition.direction = 'down'
+                root.manager.current = 'alarms'
 
-        # Back
+        # Confirm
         BackButton:
+            icon: 'check' # ICON.CONFIRM
+
             on_press:
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'settings'
+                root.save_alarm()
+                root.manager.transition.direction = 'down'
+                root.manager.current = 'alarms'

@@ -1,8 +1,11 @@
-#:kivy 1.0
-<DayButton@Button>:
-    bold: True
-    font_size: FONTSIZE.NM
-    color: COLOUR.ACCENT
+#:import COLOUR theme.Colours
 
-    size_hint_max: (96, 96)
+<DayButton@MDRoundFlatButton>:
+    font_size: '40sp'
+    font_hinting: 'mono'
+    text_color: COLOUR.ACCENT
 
+    line_width: '2px'
+    line_color: COLOUR.ACCENT
+
+    md_bg_color: COLOUR.DISABLED

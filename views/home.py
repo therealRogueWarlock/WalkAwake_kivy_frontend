@@ -18,7 +18,7 @@ class Home(Screen):
         Clock.schedule_interval(lambda dt: self.set_date(), 300)
         Clock.schedule_interval(lambda dt: self.set_time(), 1)
 
-    def Settings() -> None:
+    def Settings(self) -> None:
         print('Going to Settings')
         return
 

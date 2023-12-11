@@ -1,10 +1,28 @@
-#:kivy 1.0
-#: import COLOUR theme.Colour
+#: import COLOUR theme.Colours
 #: import ICON theme.Icons
-#: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
+#: include views/components/back_button.kv
 <TimeSettings>:
-    Button:
-        text: 'cancel'
-        on_press:
-            root.manager.current = 'alarms'
+    Background:
+        Header:
+            id: Header
+
+        MDLabel:
+            size_hint_max: (self.width, self.height)
+            text: 'Selected: '
+            font_style: 'H5'
+            pos: (300, 220)
+
+        MDDropDownItem:
+            id: SelectedTimezone
+            size_hint_max: (self.width, self.height)
+            pos: (420, 255)
+            text: 'Select'
+            
+            on_press:
+                root.open_menu()
+
+        BackButton:
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'settings'

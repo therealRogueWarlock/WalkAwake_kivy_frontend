@@ -1,7 +1,5 @@
-#:kivy 1.0
-#: import COLOUR theme.Colour
+#: import COLOUR theme.Colours
 #: import ICON theme.Icons
-#: import FONTSIZE theme.Text
 #: import RESOLUTION theme.Size
 <Camera>
     FloatLayout:
@@ -14,7 +12,7 @@
             text: 'Capture'
             size_hint_max: (120,120)
             pos:(656, 24)
-            background_normal: './views/icons/plus.png'
+            background_normal: ICON.ADD
 
             on_press: root.capture()
 

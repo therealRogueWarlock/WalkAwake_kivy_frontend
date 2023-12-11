@@ -1,23 +1,29 @@
-#: import COLOUR theme.Colours
-#: import ICON theme.Icons
-#: import RESOLUTION theme.Size
+#:import COLOUR theme.Colours
 <Camera>
+
     FloatLayout:
-        Label:
-            id: targetLabel
-
-
         Image:
             id: imageView
-            source: '/home/sander/camera_capture/image_capture.jpg'
 
 
-        Button:
+
+        MDLabel:
+            size_hint_max: (None, self.height)
+            pos_hint: {'center_x': 0.5,'top': 0.9}
+            halign: 'center'
+            
+            text: "Target: ???"
+            font_style: 'H4'
+            color: COLOUR.ACCENT
+            
+            
+            md_bg_color: 'magenta'
+
+        BackButton:
             text: 'Capture'
-            size_hint_max: (120,120)
-            pos:(656, 24)
-            background_normal: ICON.ADD
+            icon: 'plus'
 
-            on_press: root.capture()
+            on_press:
+                root.capture()
 
 

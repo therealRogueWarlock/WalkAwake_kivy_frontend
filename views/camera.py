@@ -46,8 +46,8 @@ class Camera(Screen):
         if result == 1:
             self.ids.TargetText.text = f"No {self.target} found, try again !"
         else:
-            self.ids.TargetText.text = f"{self.target} found!!!"
-            Clock.schedule_once(lambda dt: self.go_home(), 1)
+            self.ids.TargetText.text = f"{self.target} found, have a grate day!"
+            Clock.schedule_once(lambda dt: self.go_home(), 3)
 
     def go_home(self):
         self.manager.current = "home"

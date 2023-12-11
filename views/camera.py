@@ -14,6 +14,7 @@ class Camera(Screen):
         self.capture_path = "/home/sander/camera_capture"
         self.FPS = 15
         self.loop = None
+        self.targets = ["sink", "toilet", "toothbrush", "refrigerator"]
         # testing
         self.img_counter_start = 97
         self.img_counter = self.img_counter_start
@@ -35,6 +36,7 @@ class Camera(Screen):
         #self.loop.cancel()
         result = self.computer_vision_manager.VerifyImage("sink", self.capture_path)
         print("Result from verify " + str(result))
+
         self.ids.imageView.source = Icons.ADD
         self.ids.imageView.source = self.capture_path + "/image_capture.jpg"
 

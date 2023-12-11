@@ -31,9 +31,8 @@ class Camera(Screen):
         self.target = self.targets[1]
         self.ids.TargetText.text = "Target: " + self.target
         # Start Camera Scheduler
-        self.ids.ImageView.source = self.capture_path + "/image_capture.jpg"
         #self.computer_vision_manager.Start(self.feed_path)
-        self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1)
+
 
     def on_leave(self):
         # Stop Camera Scheduler
@@ -49,12 +48,11 @@ class Camera(Screen):
 
     def capture(self):
         self.ids.ProcessingSpinner.active = True
+        self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1)
         start = time.time()
         Clock.schedule_once(lambda dt: self.verify_image(), 0)
         self.ids.TargetText.text = "!Target: " + self.target
         print("after thread time : " + str(time.time() - start))
-
-
 
     def update_image_view(self):
         self.ids.ImageView.reload()

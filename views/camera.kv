@@ -1,4 +1,5 @@
 #:import COLOUR theme.Colours
+#:import ICONS theme.Icons
 <Camera>
 
     FloatLayout:
@@ -35,12 +36,12 @@
 
             md_bg_color: 'magenta'
 
-        Button:
+        IconButton:
             text: 'Capture'
-            pos: (656, 24)      # Bottom Right
-            size_hint: '96px'
+            icon: ICONS.ROUND_BUTTON_ENABLED
 
             on_press:
+                icon: ICONS.ROUND_BUTTON_DISABLED
                 root.capture()
 
 

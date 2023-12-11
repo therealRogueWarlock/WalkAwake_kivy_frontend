@@ -40,8 +40,10 @@ class Camera(Screen):
     def verify_image(self):
         start = time.time()
         result = self.computer_vision_manager.VerifyImage(self.target, self.capture_path)
+        self.ids.ProcessingSpinner.active = False
         print("Result from verify " + str(result))
         print("Verify image time : " + str(time.time() - start))
+
 
     def capture(self):
         self.ids.ProcessingSpinner.active = True

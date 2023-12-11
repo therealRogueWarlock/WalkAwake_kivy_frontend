@@ -42,11 +42,11 @@ class Camera(Screen):
         result = self.computer_vision_manager.VerifyImage(self.target, self.capture_path)
         print("Result from verify " + str(result))
         print("Verify image time : " + str(time.time() - start))
-        
-    def capture(self):
+
+    async def capture(self):
         # call model layer to capture image
         start = time.time()
-        thread = Thread(target=self.verify_image, daemon=True)
+        thread = Thread(target=self.verify_image)
         thread.start()
         print("after thread time : " + str(time.time() - start))
 

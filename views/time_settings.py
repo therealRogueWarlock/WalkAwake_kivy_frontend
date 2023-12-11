@@ -20,7 +20,7 @@ class TimeSettings(Screen):
     
     def on_pre_leave(self, *args):
         # Save the Settings to C++
-        print(f'Selected Timezone: {self.selected_timezone}')
+        print(f'[{"TIME_SETTINGS.PY":16}] Selected Timezone: {self.selected_timezone}')
         
         return super().on_pre_leave(*args)
 

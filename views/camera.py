@@ -28,7 +28,7 @@ class Camera(Screen):
         self.img_counter_max = 303
 
     def on_enter(self):
-        self.ids.ProcessingLabel.disabled = True
+        self.ids.ProcessingLabel.visible = False
         self.target = self.targets[1]
         self.ids.TargetText.text = "Target: " + self.target
         # Start Camera Scheduler
@@ -49,7 +49,7 @@ class Camera(Screen):
         self.ids.ProcessingLabel.text = "Result from verify " + str(result)
 
     def capture(self):
-        self.ids.ProcessingLabel.disabled = False
+        self.ids.ProcessingLabel.visible = True
         start = time.time()
         Clock.schedule_once(lambda dt: self.verify_image(), 0)
         print("after thread time : " + str(time.time() - start))

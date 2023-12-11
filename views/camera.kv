@@ -24,7 +24,7 @@
 
         MDLabel:
             id: ProcessingLabel
-            disabled: True
+            visible: False
             size_hint_max: (None, self.height)
             pos_hint: {'center_x': 0.5,'top': 0.7}
             halign: 'center'
@@ -40,7 +40,7 @@
             text: 'Capture'
             icon: ICONS.ROUND_BUTTON_ENABLED
 
-            on_press:
+            on_release:
                 icon: ICONS.ROUND_BUTTON_DISABLED
                 root.capture()
 

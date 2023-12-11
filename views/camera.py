@@ -44,7 +44,7 @@ class Camera(Screen):
 
     def capture(self):
         start = time.time()
-        Clock.schedule_once(self.verify_image, 0)
+        Clock.schedule_once(lambda dt: self.verify_image(), 0)
         print("after thread time : " + str(time.time() - start))
 
 

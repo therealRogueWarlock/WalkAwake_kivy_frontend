@@ -5,6 +5,7 @@ import time
 from theme import Icons
 from WalkAwake.CameraModule import ComputerVisionManager
 
+
 # camera
 class Camera(Screen):
     name = 'camera'
@@ -17,7 +18,7 @@ class Camera(Screen):
         self.FPS = 15
 
         self.loop = None
-        self.targets = ["sink", "toilet", "toothbrush", "refrigerator"]
+        self.targets = ["Sink", "Toilet", "Toothbrush", "Refrigerator"]
         self.target = None
 
         # testing
@@ -29,12 +30,11 @@ class Camera(Screen):
         self.target = self.targets[1]
         self.ids.TargetText.text = "Target: " + self.target
         # Start Camera Scheduler
-        #self.computer_vision_manager.Start(self.feed_path)
-
+        # self.computer_vision_manager.Start(self.feed_path)
 
     def on_leave(self):
         # Stop Camera Scheduler
-        #self.computer_vision_manager.Stop()
+        # self.computer_vision_manager.Stop()
         self.loop.cancel()
 
     def verify_image(self):
@@ -43,7 +43,14 @@ class Camera(Screen):
         self.ids.ProcessingSpinner.active = False
         print("Result from verify " + str(result))
         print("Verify image time : " + str(time.time() - start))
+        if result == 1:
+            self.ids.TargetText.text = f"No {self.target} found, try again !"
+        else:
+            self.ids.TargetText.text = f"{self.target} found!!!"
+            Clock.schedule_once(lambda dt: self.go_home(), 1)
 
+    def go_home(self):
+        self.manager.current = "home"
 
     def capture(self):
         self.ids.ProcessingSpinner.active = True

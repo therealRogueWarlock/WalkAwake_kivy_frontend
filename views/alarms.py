@@ -1,11 +1,12 @@
 from kivy.uix.screenmanager import Screen
 from model.alarm_manager import AlarmManager
+from model.Alarm import Alarm
 from theme import Colours
 
 class Alarms(Screen):
     name = 'alarms'
     days_binds: dict
-    alarms: dict
+    alarms: list[Alarm]
     alarm_manager: AlarmManager
 
     def __init__(self, **kwargs):
@@ -35,22 +36,24 @@ class Alarms(Screen):
         pass
 
     def disable_all(self) -> None:
-        for day, btn in self.days_binds.items():
+        for _, btn in self.days_binds.items():
             btn.md_bg_color = Colours.DISABLED
-            if day == 'Monday':
-                btn.md_bg_color = Colours.ENABLED
                 
         pass
 
     def set_all(self) -> None:
-        for d, t in self.alarms.items():
-            self.days_binds[d].md_bg_color = Colours.ENABLED if t else Colours.DISABLED
+        for alarm in self.alarms:
+            self.days_binds[alarm.Day].md_bg_color = Colours.ENABLED if alarm.Enabled else Colours.DISABLED
 
         # [self.days_binds[d].md_bg_color = (Colours.ENABLED if t else Colours.DISABLED) for (d, t) in self.alarms.items()]
 
 
     def go_to(self, day: str) -> None:
-        print(f'Going to: {day}')
+        selected: Alarm = Alarm('', '', False)
+        for a in self.alarms:
+            selected = a if a.Day.lower() == day.lower() else selected
+
+        print(f'[{"ALARMS.PY":16}] {selected.Day}: {selected.Time if selected.Enabled else "None"}')
         return
         # self.manager.get_screen('alarm')
         self.manager.current = 'alarm'

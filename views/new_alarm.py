@@ -79,7 +79,9 @@ class NewAlarm(Screen):
         # Add Logic to Save the Dates
         selected_days = [str(day) for day in self.days if self.days[day]]
 
-        print('Alarms Created:')
-        _ = [print(f'\t{day}: {self.selected_time}') for day in selected_days] 
+        print(f'[{"NEW_ALARM.PY":16}] Alarms Created:')
+        _ = [print(f'\t> {day}: {self.selected_time}') for day in selected_days]
+
         [self.alarm_manager.set_alarm(day, self.selected_time) for day in selected_days]
+        self.alarm_manager.save_alarms()
         pass

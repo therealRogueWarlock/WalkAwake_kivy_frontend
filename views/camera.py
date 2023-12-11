@@ -23,7 +23,7 @@ class Camera(Screen):
 
     def on_pre_enter(self):
         self.target = self.targets[1]
-        self.ids.TargetText.text = "Target " + self.target
+        self.ids.TargetText.text = "Target: " + self.target
         # Start Camera Scheduler
         self.ids.ImageView.source = self.capture_path + "/image_capture.jpg"
         #self.computer_vision_manager.Start(self.feed_path)

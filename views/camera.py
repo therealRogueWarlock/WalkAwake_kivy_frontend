@@ -43,12 +43,15 @@ class Camera(Screen):
         print("Result from verify " + str(result))
         print("Verify image time : " + str(time.time() - start))
 
-    async def capture(self):
-        # call model layer to capture image
+    def capture(self):
         start = time.time()
-        thread = Thread(target=self.verify_image)
-        thread.start()
+        await self.test_dims()
         print("after thread time : " + str(time.time() - start))
 
+    async def test_dims(self):
+        # call model layer to capture image
+        thread = Thread(target=self.verify_image)
+        thread.start()
+        
     def update_image_view(self):
         self.ids.ImageView.reload()

@@ -20,7 +20,7 @@ class Camera(Screen):
         self.loop = None
         self.targets = ["Sink", "Toilet", "Toothbrush", "Refrigerator"]
         self.target = None
-
+        self.is_capturing = False
         # testing
         self.img_counter_start = 97
         self.img_counter = self.img_counter_start
@@ -43,6 +43,7 @@ class Camera(Screen):
         self.ids.ProcessingSpinner.active = False
         print("Result from verify " + str(result))
         print("Verify image time : " + str(time.time() - start))
+        self.is_capturing = False
         if result == 1:
             self.ids.TargetText.text = f"No {self.target} found, try again !"
         else:
@@ -53,12 +54,11 @@ class Camera(Screen):
         self.manager.current = "home"
 
     def capture(self):
+        self.is_capturing = True
         self.ids.ImageView.source = self.capture_path + "/image_capture.jpg"
         self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1)
         start = time.time()
-        #Clock.schedule_once(lambda dt: self.verify_image(), 0)
-        thread = Thread(self.verify_image())
-        thread.start()
+        Clock.schedule_once(lambda dt: self.verify_image(), 0)
         self.ids.TargetText.text = "!Target: " + self.target
         self.ids.ProcessingSpinner.active = True
         print("after thread time : " + str(time.time() - start))

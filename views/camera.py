@@ -20,8 +20,6 @@ class Camera(Screen):
         self.targets = ["sink", "toilet", "toothbrush", "refrigerator"]
         self.target = None
 
-
-
         # testing
         self.img_counter_start = 97
         self.img_counter = self.img_counter_start
@@ -47,6 +45,7 @@ class Camera(Screen):
 
     def capture(self):
         self.ids.ProcessingSpinner.active = True
+        self.ids.ImageView.source = self.capture_path + "/image_capture.jpg"
         self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1)
         start = time.time()
         Clock.schedule_once(lambda dt: self.verify_image(), 0)

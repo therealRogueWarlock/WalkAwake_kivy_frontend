@@ -44,7 +44,6 @@ class Camera(Screen):
         result = self.computer_vision_manager.VerifyImage(self.target, self.capture_path)
         print("Result from verify " + str(result))
         print("Verify image time : " + str(time.time() - start))
-        self.ids.ProcessingLabel.text = "Result from verify " + str(result)
 
     def capture(self):
         self.ids.ProcessingSpinner.active = True

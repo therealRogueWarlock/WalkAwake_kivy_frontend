@@ -23,7 +23,7 @@ class Camera(Screen):
         # Start Camera Scheduler
         self.ids.imageView.source = self.capture_path + "/image_capture.jpg"
         #self.computer_vision_manager.Start(self.feed_path)
-        self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1/self.FPS)
+        #self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1/self.FPS)
 
     def on_pre_leave(self):
         # Stop Camera Scheduler

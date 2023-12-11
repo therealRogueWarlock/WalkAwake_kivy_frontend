@@ -1,6 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivy.clock import Clock
-from WalkAwake import ComputerVisionManager
+from WalkAwake.CameraModule import ComputerVisionManager
 
 # camera
 class Camera(Screen):

@@ -11,7 +11,7 @@
         MDLabel:
             id: TargetText
             size_hint_max: (None, self.height)
-            pos_hint: {'center_x': 0.5,'top': 0.9}
+            pos_hint: {'center_x': 0.5,'top': 1}
             halign: 'center'
             
             text: "Target: ???"
@@ -21,9 +21,23 @@
             
             md_bg_color: 'magenta'
 
+        MDLabel:
+            id: ProcessingLabel
+            disabled: True
+            size_hint_max: (None, self.height)
+            pos_hint: {'center_x': 0.5,'top': 0.7}
+            halign: 'center'
+
+            text: "Processing image!"
+            font_style: 'H4'
+            color: COLOUR.ACCENT
+
+
+            md_bg_color: 'magenta'
+
         BackButton:
             text: 'Capture'
-            icon: 'plus'
+
 
             on_press:
                 root.capture()

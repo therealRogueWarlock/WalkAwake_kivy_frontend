@@ -1,5 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivy.clock import Clock
+from theme import Icons
 from WalkAwake.CameraModule import ComputerVisionManager
 
 # camera
@@ -34,7 +35,7 @@ class Camera(Screen):
         self.loop.cancel()
         result = self.computer_vision_manager.VerifyImage("sink", self.capture_path)
         print("Result from verify " + str(result))
-        self.ids.imageView.source = ""
+        self.ids.imageView.source = Icons.ADD
         self.ids.imageView.source = self.capture_path + "/image_capture.jpg"
 
     def update_image_view(self):

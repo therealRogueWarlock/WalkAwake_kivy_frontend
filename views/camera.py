@@ -3,7 +3,7 @@ from kivy.clock import Clock
 from threading import Thread
 import time
 from theme import Icons
-#from WalkAwake.CameraModule import ComputerVisionManager
+from WalkAwake.CameraModule import ComputerVisionManager
 
 
 # camera
@@ -12,8 +12,8 @@ class Camera(Screen):
 
     def __init__(self, **kw):
         super().__init__(**kw)
-        #self.computer_vision_manager = ComputerVisionManager()
-        #self.feed_path = "/home/sander/camera_feed"
+        self.computer_vision_manager = ComputerVisionManager()
+
         self.capture_path = "data/"
         self.FPS = 15
 
@@ -29,12 +29,9 @@ class Camera(Screen):
     def on_enter(self):
         self.target = self.targets[1]
         self.ids.TargetText.text = "Target: " + self.target
-        # Start Camera Scheduler
-        # self.computer_vision_manager.Start(self.feed_path)
 
     def on_leave(self):
-        # Stop Camera Scheduler
-        # self.computer_vision_manager.Stop()
+
         self.loop.cancel()
 
     def verify_image(self):
@@ -56,7 +53,7 @@ class Camera(Screen):
     def capture(self):
         if self.is_capturing:
             return
-        
+
         self.is_capturing = True
         self.ids.ImageView.source = self.capture_path + "/image_capture.jpg"
         self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1)

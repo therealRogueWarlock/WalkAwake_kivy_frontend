@@ -1,5 +1,5 @@
 import datetime as dt
-from Alarm import Alarm
+from model.Alarm import Alarm
 import json
 
 class AlarmManager(object):

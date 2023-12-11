@@ -22,19 +22,12 @@
             
             md_bg_color: 'magenta'
 
-        MDLabel:
-            id: ProcessingLabel
-            visible: False
-            size_hint_max: (None, self.height)
-            pos_hint: {'center_x': 0.5,'top': 0.7}
-            halign: 'center'
-
-            text: "Processing image!"
-            font_style: 'H4'
-            color: COLOUR.ACCENT
-
-
-            md_bg_color: 'magenta'
+        MDSpinner:
+            id: ProcessingSpinner
+            size_hint: None, None
+            size: dp(46), dp(46)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            active: False
 
         IconButton:
             text: 'Capture'

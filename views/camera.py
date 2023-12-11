@@ -53,12 +53,14 @@ class Camera(Screen):
         self.manager.current = "home"
 
     def capture(self):
-        self.ids.ProcessingSpinner.active = True
         self.ids.ImageView.source = self.capture_path + "/image_capture.jpg"
         self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1)
         start = time.time()
-        Clock.schedule_once(lambda dt: self.verify_image(), 0)
+        #Clock.schedule_once(lambda dt: self.verify_image(), 0)
+        thread = Thread(self.verify_image())
+        thread.start()
         self.ids.TargetText.text = "!Target: " + self.target
+        self.ids.ProcessingSpinner.active = True
         print("after thread time : " + str(time.time() - start))
 
     def update_image_view(self):

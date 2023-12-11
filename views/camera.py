@@ -15,15 +15,20 @@ class Camera(Screen):
         self.feed_path = "/home/sander/camera_feed"
         self.capture_path = "/home/sander/camera_capture"
         self.FPS = 15
+
         self.loop = None
         self.targets = ["sink", "toilet", "toothbrush", "refrigerator"]
         self.target = None
+
+
+
         # testing
         self.img_counter_start = 97
         self.img_counter = self.img_counter_start
         self.img_counter_max = 303
 
     def on_enter(self):
+        self.ids.ProcessingLabel.disabled = True
         self.target = self.targets[1]
         self.ids.TargetText.text = "Target: " + self.target
         # Start Camera Scheduler

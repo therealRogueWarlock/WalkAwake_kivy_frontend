@@ -31,7 +31,6 @@ class Camera(Screen):
         #self.computer_vision_manager.Start(self.feed_path)
         self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1)
 
-
     def on_leave(self):
         # Stop Camera Scheduler
         #self.computer_vision_manager.Stop()
@@ -45,13 +44,9 @@ class Camera(Screen):
 
     def capture(self):
         start = time.time()
-        await self.test_dims()
+        Clock.schedule_once(self.verify_image, 0)
         print("after thread time : " + str(time.time() - start))
 
-    async def test_dims(self):
-        # call model layer to capture image
-        thread = Thread(target=self.verify_image)
-        thread.start()
-        
+
     def update_image_view(self):
         self.ids.ImageView.reload()

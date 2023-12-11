@@ -13,8 +13,8 @@ class Camera(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
         self.computer_vision_manager = ComputerVisionManager()
-        self.feed_path = "/home/sander/camera_feed"
-        self.capture_path = "/home/sander/camera_capture"
+        #self.feed_path = "/home/sander/camera_feed"
+        self.capture_path = "data/"
         self.FPS = 15
 
         self.loop = None
@@ -39,7 +39,7 @@ class Camera(Screen):
 
     def verify_image(self):
         start = time.time()
-        result = self.computer_vision_manager.VerifyImage(self.target, self.capture_path)
+        result = self.computer_vision_manager.VerifyImage(self.target)
         self.ids.ProcessingSpinner.active = False
         print("Result from verify " + str(result))
         print("Verify image time : " + str(time.time() - start))

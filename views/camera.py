@@ -1,6 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.clock import Clock
 from threading import Thread
+import time
 from theme import Icons
 from WalkAwake.CameraModule import ComputerVisionManager
 
@@ -37,14 +38,17 @@ class Camera(Screen):
         self.loop.cancel()
 
     def verify_image(self):
+        start = time.time()
         result = self.computer_vision_manager.VerifyImage(self.target, self.capture_path)
         print("Result from verify " + str(result))
-
+        print("Verify image time : " + str(time.time() - start))
+        
     def capture(self):
         # call model layer to capture image
+        start = time.time()
         thread = Thread(target=self.verify_image, daemon=True)
         thread.start()
-        print("after thread")
+        print("after thread time : " + str(time.time() - start))
 
     def update_image_view(self):
         self.ids.ImageView.reload()

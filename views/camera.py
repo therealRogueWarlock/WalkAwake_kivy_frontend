@@ -23,8 +23,9 @@ class Camera(Screen):
 
     def on_pre_enter(self):
         self.target = self.targets[1]
+        self.ids.TargetText.text = "Target " + self.target
         # Start Camera Scheduler
-        self.ids.imageView.source = self.capture_path + "/image_capture.jpg"
+        self.ids.ImageView.source = self.capture_path + "/image_capture.jpg"
         #self.computer_vision_manager.Start(self.feed_path)
         #self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1/self.FPS)
 
@@ -39,13 +40,8 @@ class Camera(Screen):
         result = self.computer_vision_manager.VerifyImage(self.target, self.capture_path)
         print("Result from verify " + str(result))
 
-        self.ids.imageView.source = Icons.ADD
-        self.ids.imageView.source = self.capture_path + "/image_capture.jpg"
+        self.ids.ImageView.source = Icons.ADD
+        self.ids.ImageView.source = self.capture_path + "/image_capture.jpg"
 
     def update_image_view(self):
-        image_view = self.ids.imageView
-        # testing
-        self.img_counter += 1
-        image_view.source = self.feed_path + "/image_capture.jpg"
-        if self.img_counter == self.img_counter_max:
-            self.img_counter = self.img_counter_start
+        pass

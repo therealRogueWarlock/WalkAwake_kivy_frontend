@@ -7,7 +7,7 @@ from theme import Size, Colours
 kivy.require('2.0.0')
 from kivy.uix.screenmanager import ScreenManager
 from kivy.core.window import Window
-from kivy.clock import Clock
+from kivy.clock import mainthread
 
 from kivymd.app import MDApp
 
@@ -41,10 +41,11 @@ class MainApp(MDApp):
             self.screen_manager.add_widget(screen())
 
         # Interrupt Callback
-        GenericManager().callbacks.registerCallback('trigger_alarm', Clock.schedule_once(lambda x: self.go_to_wakeup, 1))
+        GenericManager().callbacks.registerCallback('trigger_alarm', self.go_to_wakeup)
 
         return self.screen_manager
 
+    @mainthread
     def go_to_wakeup(self):
         self.screen_manager.current = 'wakeup'
 

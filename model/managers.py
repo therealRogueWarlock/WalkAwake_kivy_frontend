@@ -43,6 +43,32 @@ class AlarmManager(object):
         # Save the Alarms using the C++ Library
         pass
 
+
+class CallbackManager(object):
+    callback_functions: dict = {} # dict[str, function]
+
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(CallbackManager, cls).__new__(cls)
+        
+        return cls.instance
+    
+    def callback(self, info: str):
+        fun = self.callback_functions[info]
+        if(fun): # fun is None if not found from info
+            fun()
+        
+
+    def registerCallback(self, identifier: str, cb_function) -> None:
+        # Register the Callback using the Identifier to differentiate
+        self.callback_functions[identifier] = cb_function
+
+
+    def unregister(self, identifier: str) -> None:
+        # Remove the callback function
+        self.callback_functions.pop(identifier)
+
+
 if __name__ == '__main__':
     m = AlarmManager()
 

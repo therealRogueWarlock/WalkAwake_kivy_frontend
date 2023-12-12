@@ -41,7 +41,7 @@ class MainApp(MDApp):
             self.screen_manager.add_widget(screen())
 
         # Interrupt Callback
-        GenericManager().callbacks.registerCallback('trigger_alarm', Clock.schedule_once(lambda x: self.go_to_wakeup))
+        GenericManager().callbacks.registerCallback('trigger_alarm', Clock.schedule_once(lambda x: self.go_to_wakeup, 1))
 
         return self.screen_manager
 

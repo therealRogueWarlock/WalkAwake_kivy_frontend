@@ -45,7 +45,7 @@ class MainApp(MDApp):
         return self.screen_manager
 
     def go_to_wakeup(self):
-        self.screen_manager.current = 'camera'
+        self.screen_manager.current = 'wakeup'
 
 if __name__ == '__main__':
     kivy_setup()

@@ -13,5 +13,8 @@ from .new_alarm import NewAlarm
 # Camera
 from .camera import Camera
 
+# Wakeup
+from .wakeup import WakeUp
+
 # Setup
-Screens = [Home, Settings, WifiSettings, TimeSettings, Alarms, NewAlarm, Camera]
+Screens = [Home, Settings, WifiSettings, TimeSettings, Alarms, NewAlarm, Camera, WakeUp]

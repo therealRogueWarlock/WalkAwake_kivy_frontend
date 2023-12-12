@@ -1,5 +1,6 @@
 import os
 import kivy
+from model.managers import CallbackManager
 from views import Screens
 from theme import Size, Colours
 
@@ -29,12 +30,22 @@ class MainApp(MDApp):
         self.theme_cls.accent_palette = 'Brown'
 
         # Screenmanager
-        screen_manager = ScreenManager()
-        screen_manager.transition.duration = .15
-        for screen in Screens:
-            screen_manager.add_widget(screen())
-        return screen_manager
+        self.screen_manager = ScreenManager()
 
+        # Transitions
+        self.screen_manager.transition.duration = .15
+
+        # Setup of Screens
+        for screen in Screens:
+            self.screen_manager.add_widget(screen())
+
+        # Interrupt Callback
+        CallbackManager().registerCallback('trigger_alarm', self.go_to_wakeup)
+
+        return self.screen_manager
+
+    def go_to_wakeup(self):
+        self.screen_manager.current = 'camera'
 
 if __name__ == '__main__':
     kivy_setup()

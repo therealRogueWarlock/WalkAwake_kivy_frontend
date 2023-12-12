@@ -2,7 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivymd.uix.pickers import MDTimePicker
 
 from datetime import time
-from model.alarm_manager import AlarmManager
+from model.managers import AlarmManager
 from theme import Colours
 
 class NewAlarm(Screen):

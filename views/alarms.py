@@ -1,5 +1,5 @@
 from kivy.uix.screenmanager import Screen
-from model.alarm_manager import AlarmManager
+from model.managers import AlarmManager
 from model.Alarm import Alarm
 from theme import Colours
 

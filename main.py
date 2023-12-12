@@ -1,6 +1,6 @@
 import os
 import kivy
-from model.managers import CallbackManager
+from model.managers import GenericManager
 from views import Screens
 from theme import Size, Colours
 
@@ -40,7 +40,7 @@ class MainApp(MDApp):
             self.screen_manager.add_widget(screen())
 
         # Interrupt Callback
-        CallbackManager().registerCallback('trigger_alarm', self.go_to_wakeup)
+        GenericManager().callbacks.registerCallback('trigger_alarm', self.go_to_wakeup)
 
         return self.screen_manager
 

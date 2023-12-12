@@ -1,5 +1,5 @@
 from kivy.uix.screenmanager import Screen
-from model.managers import AlarmManager
+from model.managers import GenericManager, AlarmManager
 from model.Alarm import Alarm
 from theme import Colours
 
@@ -16,7 +16,7 @@ class Alarms(Screen):
         self.bind_days()
         self.disable_all()
 
-        self.alarm_manager = AlarmManager()
+        self.alarm_manager = GenericManager().alarms
 
     def on_pre_enter(self, *args):
         self.alarms = self.alarm_manager.alarms

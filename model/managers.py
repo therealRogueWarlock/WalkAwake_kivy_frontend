@@ -6,13 +6,8 @@ class AlarmManager(object):
     old_alarms: dict[str, object]
     alarms: list[Alarm]
 
-    def __new__(cls):
-        if not hasattr(cls, 'instance'):
-            cls.instance = super(AlarmManager, cls).__new__(cls)
-        
-        return cls.instance
 
-    def __init__(self) -> None:
+    def __init__(self, manager) -> None:
         # Read alarms from Back End
 
         # Parse alarms (json.loads('json string'))
@@ -46,13 +41,10 @@ class AlarmManager(object):
 
 class CallbackManager(object):
     callback_functions: dict = {} # dict[str, function]
-
-    def __new__(cls):
-        if not hasattr(cls, 'instance'):
-            cls.instance = super(CallbackManager, cls).__new__(cls)
-        
-        return cls.instance
     
+    def __init__(self, manager) -> None:
+        pass
+
     def callback(self, info: str):
         fun = self.callback_functions[info]
         if(fun): # fun is None if not found from info
@@ -69,13 +61,32 @@ class CallbackManager(object):
         self.callback_functions.pop(identifier)
 
 
+class GenericManager(object):
+    backend: object
+    alarms: AlarmManager
+    callbacks: CallbackManager
+
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(GenericManager, cls).__new__(cls)
+        
+        return cls.instance
+
+    def __init__(self) -> None:
+        self.backend = None # AlarmModule.AlarmManager()
+        self.alarms = AlarmManager(self.backend)
+        self.callbacks = CallbackManager(self.backend)
+
+    pass
+
+
 if __name__ == '__main__':
-    m = AlarmManager()
+    m = AlarmManager(None)
 
     j = json.dumps(m.alarms, default=lambda a: a.__dict__)
     j = f'{{"alarms":{j}}}'
 
     print(f'{j}')
 
-    c = CallbackManager()
+    c = CallbackManager(None)
     c.callback('this is not in the DICT')

@@ -48,6 +48,9 @@ class AlarmManager(object):
     def snooze(self):
         self.manager.Snooze()
 
+    def get_alarms(self):
+        self.alarms = self.manager.GetAlarms()
+        return self.alarms
 
 class CallbackManager(object):
     callback_functions: dict = {} # dict[str, function]

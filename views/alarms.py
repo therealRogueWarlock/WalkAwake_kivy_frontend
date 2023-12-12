@@ -19,7 +19,7 @@ class Alarms(Screen):
         self.alarm_manager = GenericManager().alarms
 
     def on_pre_enter(self, *args):
-        self.alarms = self.alarm_manager.alarms
+        self.alarms = self.alarm_manager.get_alarms()
         self.set_all()
         return super().on_pre_enter(*args)
 

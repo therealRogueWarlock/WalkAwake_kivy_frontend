@@ -76,3 +76,6 @@ if __name__ == '__main__':
     j = f'{{"alarms":{j}}}'
 
     print(f'{j}')
+
+    c = CallbackManager()
+    c.callback('this is not in the DICT')

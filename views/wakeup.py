@@ -1,6 +1,7 @@
 from kivy.uix.screenmanager import Screen
-
+from model.managers import GenericManager
 from datetime import datetime as dt
+
 
 class WakeUp(Screen):
     name = 'wakeup'
@@ -19,6 +20,7 @@ class WakeUp(Screen):
     def snooze(self):
         print('Snoozing')
         # Call Backend Snooze
+        GenericManager().alarms.snooze()
 
         self.manager.transition.duration = 1
         self.manager.transition.direction = 'up'

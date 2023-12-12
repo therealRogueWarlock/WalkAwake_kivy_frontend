@@ -1,5 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivy.clock import Clock
+from model.managers import GenericManager
 from threading import Thread
 import time
 from theme import Icons
@@ -32,23 +33,19 @@ class Camera(Screen):
         self.ids.TargetText.text = "Target: " + self.target
 
     def on_leave(self):
-
-        self.loop.cancel() # type: ignore
+        self.loop.cancel()  # type: ignore
 
     def verify_image(self):
-        start = time.time() # TESTING
 
         result = self.computer_vision_manager.VerifyImage(self.target)
         self.ids.ProcessingSpinner.active = False
-
-        print("Result from verify " + str(result))
-        print("Verify image time : " + str(time.time() - start))
 
         self.is_capturing = False
         if result == 1:
             self.ids.TargetText.text = f"No {self.target} found, try again !"
         else:
-            self.ids.TargetText.text = f"{self.target} found, have a grate day!"
+            self.ids.TargetText.text = f"{self.target} found, have a great day!"
+            GenericManager().alarms.stop_alarm()
             Clock.schedule_once(lambda dt: self.go_home(), 3)
 
     def go_home(self):
@@ -67,19 +64,12 @@ class Camera(Screen):
         # Start an Update Loop for Background Image
         self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1)
 
-        # Testing / Debugging
-        start = time.time()
-
         # Call Verify Image once without stealing focus
         Clock.schedule_once(lambda dt: self.verify_image(), 0)
 
         # Visual Updates
         self.ids.TargetText.text = "!Target: " + self.target
         self.ids.ProcessingSpinner.active = True
-
-        # Testing / Debugging
-        print("after thread time : " + str(time.time() - start))
-
 
     def update_image_view(self):
         self.ids.ImageView.reload()

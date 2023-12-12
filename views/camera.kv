@@ -1,28 +1,39 @@
 #:import COLOUR theme.Colours
+#:import ICONS theme.Icons
 <Camera>
-    Background:
-        
-        # Image:
-        #     id: imageView
-        #     source: 'C:/Users/sande/PycharmProjects/Kivy-GTFU-frontend/kitchen.jpg'
+
+    FloatLayout:
+        Image:
+            id: ImageView
+            nocache: True
+
+
 
         MDLabel:
+            id: TargetText
             size_hint_max: (None, self.height)
-            pos_hint: {'center_x': 0.5,'top': 0.9}
+            pos_hint: {'center_x': 0.5,'top': 1}
             halign: 'center'
             
             text: "Target: ???"
             font_style: 'H4'
             color: COLOUR.ACCENT
             
-            
-            md_bg_color: 'magenta'
+            md_bg_color: COLOUR.DISABLED
 
-        BackButton:
+        MDSpinner:
+            id: ProcessingSpinner
+            size_hint: None, None
+            size: dp(46), dp(46)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            active: False
+
+        IconButton:
             text: 'Capture'
-            icon: 'plus'
+            icon: ICONS.ROUND_BUTTON_ENABLED
 
-            on_press:
+            on_release:
+                icon: ICONS.ROUND_BUTTON_DISABLED
                 root.capture()
 
 

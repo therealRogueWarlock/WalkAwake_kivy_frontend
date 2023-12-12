@@ -49,7 +49,8 @@ class AlarmManager(object):
         self.manager.Snooze()
 
     def get_alarms(self):
-        self.alarms = self.manager.GetAlarms()
+        alarms_json = self.manager.GetAlarms()
+        self.alarms = json.loads(alarms_json, object_hook=as_alarm)
         return self.alarms
 
 class CallbackManager(object):

@@ -43,7 +43,6 @@ class Alarms(Screen):
 
     def set_all(self) -> None:
         for alarm in self.alarms:
-            print(type(alarm))
             # print(f'[{"ALARMS.PY":16}] {alarm.Day:10}: {alarm.Time if alarm.Enabled else alarm.Enabled}')
             self.days_binds[alarm.Day].md_bg_color = Colours.ENABLED if alarm.Enabled else Colours.DISABLED
 
@@ -55,7 +54,4 @@ class Alarms(Screen):
         for a in self.alarms:
             selected = a if a.Day.lower() == day.lower() else selected
 
-        print(f'[{"ALARMS.PY":16}] {selected.Day}: {selected.Time if selected.Enabled else "None"}')
-        return
-        # self.manager.get_screen('alarm')
-        self.manager.current = 'alarm'
+        # print(f'[{"ALARMS.PY":16}] {selected.Day}: {selected.Time if selected.Enabled else "None"}')

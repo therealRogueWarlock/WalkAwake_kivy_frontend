@@ -1,13 +1,11 @@
+#:kivy
 #:import COLOUR theme.Colours
 #:import ICONS theme.Icons
 <Camera>
-
     FloatLayout:
         Image:
             id: ImageView
             nocache: True
-
-
 
         MDLabel:
             id: TargetText
@@ -35,5 +33,4 @@
             on_release:
                 icon: ICONS.ROUND_BUTTON_DISABLED
                 root.capture()
-
 

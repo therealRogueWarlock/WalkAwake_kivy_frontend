@@ -1,7 +1,6 @@
 from datetime import date, datetime
 from kivy.uix.screenmanager import Screen
 from kivy.clock import Clock
-from kivy import utils
 
 class Home(Screen):
     name = 'home'
@@ -18,22 +17,23 @@ class Home(Screen):
         Clock.schedule_interval(lambda dt: self.set_date(), 300)
         Clock.schedule_interval(lambda dt: self.set_time(), 1)
 
-    def Settings(self) -> None:
-        return
 
-    #
     def set_date(self) -> None:
         today = date.today()
+
+        # Stringify Date to Day Month, Year
         self.ids.Date.text = today.strftime("%d %b, %Y")
-        return
+
 
     def set_time(self) -> None:
         now = datetime.now()
+
+        # Stringify Time to HH:MM
         self.ids.CurrentTime.text = now.strftime("%H:%M")
-        return
+
 
     def set_next_alarm(self) -> None:
         # Get Alarm for Tomorrow if one is made
-        alarm_tomorrow = '' or 'None Tomorrow'
-        self.ids.NextAlarm.text = alarm_tomorrow
-        return
+        alarm_tomorrow = '¯\\_(ツ)_/¯' or 'None' # Alarm Manager
+        self.ids.NextAlarm.text = alarm_tomorrow # UI
+

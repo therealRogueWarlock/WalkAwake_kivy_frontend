@@ -1,65 +1,79 @@
 from kivy.uix.screenmanager import Screen
 from kivy.clock import Clock
 from model.managers import GenericManager
-from threading import Thread
-import time
-from theme import Icons
 from WalkAwake.CameraModule import ComputerVisionManager
 
 
-# camera
 class Camera(Screen):
     name = 'camera'
 
-    capture_path: str
+    # Live Feed - Not Yet Implemented
     FPS: int
-    loop: object
-    targets: list[str]
+    
+    # Capture Image
+    capture_path: str
     target: str
     is_capturing: bool
+    loop: object
+
+    # Verify Image
+    targets: list[str]
+    computer_vision_manager: ComputerVisionManager
 
     def __init__(self, **kw):
         super().__init__(**kw)
         self.computer_vision_manager = ComputerVisionManager()
 
-        self.capture_path = "data/"
-        self.FPS = 15
+        self.FPS = 15 # Framerate for Live Feed
 
-        self.targets = ["Sink", "Toilet", "Toothbrush", "Refrigerator"]
+        self.capture_path = 'data/' # Location to store image
+
+        # To be moved to a config file
+        self.targets = ['Sink', 'Toilet', 'Toothbrush', 'Refrigerator']
+
         self.is_capturing = False
 
     def on_enter(self):
-        self.target = self.targets[1]
-        self.ids.TargetText.text = "Target: " + self.target
+        self.target = self.targets[1] # Add Random Index
+        self.ids.TargetText.text = f'Target: {self.target}'
 
     def on_leave(self):
         self.loop.cancel()  # type: ignore
 
     def verify_image(self):
-
+        # Verify Image through Backend
         result = self.computer_vision_manager.VerifyImage(self.target)
+
+        # Hide Spinner
         self.ids.ProcessingSpinner.active = False
 
         self.is_capturing = False
-        if result == 1:
-            self.ids.TargetText.text = f"No {self.target} found, try again !"
-        else:
-            self.ids.TargetText.text = f"{self.target} found, have a great day!"
+
+        # Show User whether the Image was correct
+        if result == 1: # 1 -> Error
+            self.ids.TargetText.text = f'No {self.target} found, try again!'
+        else: # 0 -> Alles Gut
+            self.ids.TargetText.text = f'{self.target} found, have a great day!'
+            
+            # Stop the Alarm
             GenericManager().alarms.stop_alarm()
+
+            # Navigate to Home after a short delay
             Clock.schedule_once(lambda dt: self.go_home(), 3)
 
     def go_home(self):
-        self.manager.current = "home"
+        self.manager.current = 'home'
 
-    def capture(self):
+    def capture(self) -> None:
         if self.is_capturing:
-            return
+            # Blocks accidental multi-tapping
+            return None
         
         # Ensure another picture isn't taken before processing the first
         self.is_capturing = True
 
         # Set the image path
-        self.ids.ImageView.source = self.capture_path + "/image_capture.jpg"
+        self.ids.ImageView.source = f'{self.capture_path}/image_capture.jpg'
 
         # Start an Update Loop for Background Image
         self.loop = Clock.schedule_interval(lambda dt: self.update_image_view(), 1)
@@ -68,7 +82,6 @@ class Camera(Screen):
         Clock.schedule_once(lambda dt: self.verify_image(), 0)
 
         # Visual Updates
-        self.ids.TargetText.text = "!Target: " + self.target
         self.ids.ProcessingSpinner.active = True
 
     def update_image_view(self):

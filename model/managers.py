@@ -11,11 +11,9 @@ class AlarmManager(object):
 
     def __init__(self, manager) -> None:
         self.manager = manager
+        
         # Read alarms from Back End
-        path = 'data/Alarms.json'
-        with open(path) as p:
-            self.alarms = json.load(p, object_hook=as_alarm)
-        # Parse alarms (json.loads('json string'))
+        # self.get_alarms() # This should work
 
         # Check if self.alarms is empty
         if len(self.alarms) == 0:
@@ -30,29 +28,43 @@ class AlarmManager(object):
                 Alarm('Saturday', '00:00', False),
             ]
 
+
     def set_alarm(self, day: str, time: dt.time):
         for alarm in self.alarms:
             if day == alarm.Day:
                 alarm.Time = time.strftime('%H:%M')
                 alarm.Enabled = True
 
+
     def save_alarms(self):
-        formatted = json.dumps(self.alarms, default=lambda alarm: alarm.__dict__)
+        # Serialize the Alarms as a JSON string
+        formatted =\
+            json.dumps(self.alarms,\
+                       default=lambda alarm: alarm.__dict__)
+
+        # Prepend & Append needed overhead
         formatted = f'{{"alarms":{formatted}}}'
+
+        # Update the Back End
         self.manager.UpdateAlarms(formatted)
-        pass
+
 
     def stop_alarm(self):
         self.manager.StopAlarm()
 
+
     def snooze(self):
-        # print(f'[{"ALARM_MANAGER.PY":16}] Attempting to Snooze')
-        # self.manager.Snooze()
+        # self.manager.Snooze() # This causes a weird bug
         pass
 
-    def get_alarms(self):
+
+    def get_alarms(self) -> list[Alarm]:
+        # Get Alarms from backend
         alarms_json = self.manager.GetAlarms()
+        
+        # Parse Alarms to List of Alarms
         self.alarms = json.loads(alarms_json, object_hook=as_alarm)
+
         return self.alarms
 
 class CallbackManager(object):
@@ -61,12 +73,15 @@ class CallbackManager(object):
 
     def __init__(self, manager) -> None:
         self.manager = manager
+        
+        # Register function as Callback
+        # function used by Back End
         self.manager.RegisterCallback(self.callback)
 
     def callback(self, info: str):
         fun = self.callback_functions[info]
-        if fun: # fun is None if not found from info
-            fun()
+        if fun: # fun is None (falsy) if not found from info
+            fun() # Function is indeed a Fun one :)
 
     def registerCallback(self, identifier: str, cb_function) -> None:
         # Register the Callback using the Identifier to differentiate
@@ -79,31 +94,23 @@ class CallbackManager(object):
 
 
 class GenericManager(object):
+    # C++ Back End
     backend: object
+
+    # Managers
     alarms: AlarmManager
     callbacks: CallbackManager
 
+    # Singleton on Constructor
     def __new__(cls):
         if not hasattr(cls, 'instance'):
             cls.instance = super(GenericManager, cls).__new__(cls)
 
         return cls.instance
 
+
     def __init__(self) -> None:
         self.backend = AlarmModule.AlarmManager()
         self.alarms = AlarmManager(self.backend)
         self.callbacks = CallbackManager(self.backend)
 
-    pass
-
-
-if __name__ == '__main__':
-    m = AlarmManager(None)
-
-    j = json.dumps(m.alarms, default=lambda a: a.__dict__)
-    j = f'{{"alarms":{j}}}'
-
-    print(f'{j}')
-
-    c = CallbackManager(None)
-    c.callback('this is not in the DICT')

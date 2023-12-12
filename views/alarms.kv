@@ -1,6 +1,4 @@
-#: import COLOUR theme.Colours
-#: import ICON theme.Icons
-#: import RESOLUTION theme.Size
+#:kivy
 #: include views/components/day_button.kv
 <Alarms>:
     Background:
@@ -64,7 +62,7 @@
 
         # New Alarm
         IconButton:
-            icon: 'plus' # ICON.ADD
+            icon: 'plus'
             pos: (536, 24)
 
             on_press:
@@ -76,3 +74,4 @@
             on_press:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'settings'
+

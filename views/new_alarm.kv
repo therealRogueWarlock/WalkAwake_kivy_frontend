@@ -85,18 +85,16 @@
                 on_press:
 					root.toggle('Sunday')
 
-        # Cancel
         IconButton:
-            icon: 'close' # ICON.CANCEL
+            icon: 'close' # Cancel
             pos: (536, 24)
 
             on_press:
                 root.manager.transition.direction = 'down'
                 root.manager.current = 'alarms'
 
-        # Confirm
         BackButton:
-            icon: 'check' # ICON.CONFIRM
+            icon: 'check' # Confirm
 
             on_press:
                 root.save_alarm()

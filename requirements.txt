@@ -5,4 +5,5 @@
 
 kivy >= 2.0.0
 kivymd >= 1.1.0
+
 # pillow # Only needed for ColourPicker in KivyMD

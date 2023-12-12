@@ -7,6 +7,9 @@ from theme import Colours
 
 class NewAlarm(Screen):
     name = 'new_alarm'
+
+    alarm_manager: AlarmManager
+    
     selected_time: time
     days_bind: dict = {}
     days: dict[str, bool] = {
@@ -18,19 +21,20 @@ class NewAlarm(Screen):
         'Saturday': False,
         'Sunday': False
     }
-    time_picker: MDTimePicker
 
-    alarm_manager: AlarmManager
+    time_picker: MDTimePicker
 
     def __init__(self, **kw):
         super().__init__(**kw)
+
+        # Retrieve the Alarm Manager
+        self.alarm_manager = GenericManager().alarms
     
+        # Continue Setup
         self.ids.Header.text = 'New Alarm'
         self.bind_days()
         self.time_picker = MDTimePicker()
         self.time_picker.bind(time=self.get_time)
-
-        self.alarm_manager = GenericManager().alarms
 
 
     def on_pre_enter(self, *args):
@@ -40,8 +44,10 @@ class NewAlarm(Screen):
 
     def get_time(self, instance, time):
         self.selected_time = time
+
+        # Show Time on the UI Button
         formatted_time = time.strftime('%H:%M')
-        self.ids.TimeButton.text = formatted_time
+        self.ids.TimeButton.text = formatted_time # UI
 
 
     def bind_days(self) -> None:
@@ -53,7 +59,7 @@ class NewAlarm(Screen):
         self.days_bind['Friday'] = self.ids.Friday
         self.days_bind['Saturday'] = self.ids.Saturday
         self.days_bind['Sunday'] = self.ids.Sunday   
-        pass
+
 
     def disable_all(self) -> None:
         for day, _ in self.days.items():
@@ -61,27 +67,31 @@ class NewAlarm(Screen):
 
     def toggle(self, day, force = False, v: bool = False) -> None:
         if(day not in self.days.keys()):
-            return
+            return None
         
-        if(force):
+        if(force): # Force a value if needed
             self.days[day] = v
-        else:
+        else: # Default (normal) just flips value
             self.days[day] ^= True
 
+        # Update the UI
         self.update_background(day, self.days[day])
 
-        return
 
     def update_background(self, day: str, enabled: bool) -> None:
-        self.days_bind[day].md_bg_color = Colours.ENABLED if enabled else Colours.DISABLED
+        self.days_bind[day].md_bg_color =\
+            Colours.ENABLED if enabled else Colours.DISABLED
+
 
     def save_alarm(self) -> None:
-        # Add Logic to Save the Dates
+        # Get the Days that are Enabled
         selected_days = [str(day) for day in self.days if self.days[day]]
 
-        # print(f'[{"NEW_ALARM.PY":16}] Alarms Created:')
-        # _ = [print(f'\t> {day}: {self.selected_time}') for day in selected_days]
-
-        [self.alarm_manager.set_alarm(day, self.selected_time) for day in selected_days]
+        # Set the Time in Alarm Manager for Selected Days
+        # using List Comprehension (very pythonic)
+        [self.alarm_manager.set_alarm(day, self.selected_time)\
+         for day in selected_days]
+        
+        # Save the Alarms through Back End
         self.alarm_manager.save_alarms()
-        pass
+

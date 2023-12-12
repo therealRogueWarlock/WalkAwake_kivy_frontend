@@ -1,8 +1,27 @@
-{"alarms":[{
-  "Day": "Sunday", "Time": "00:00", "Enabled": false}, {
-  "Day": "Monday", "Time": "00:00", "Enabled": false}, {
-  "Day": "Tuesday", "Time": "00:00", "Enabled": false}, {
-  "Day": "Wednesday", "Time": "00:00", "Enabled": false}, {
-  "Day": "Thursday", "Time": "00:00", "Enabled": false}, {
-  "Day": "Friday", "Time": "00:00", "Enabled": false}, {
-  "Day": "Saturday", "Time": "00:00", "Enabled": false}]}
+{
+  "alarms": [
+    { "Day": "Sunday",
+      "Time": "00:00",
+      "Enabled": false },
+    { "Day": "Monday",
+      "Time": "00:00",
+      "Enabled": false }, 
+    { "Day": "Tuesday",
+      "Time": "00:00",
+      "Enabled": false },
+    { "Day": "Wednesday",
+      "Time": "00:00",
+      "Enabled": false }, 
+    { "Day": "Thursday",
+      "Time": "00:00",
+      "Enabled": false }, 
+    { "Day": "Friday",
+      "Time": "00:00",
+      "Enabled": false }, 
+    { "Day": "Saturday",
+      "Time": "00:00",
+      "Enabled": false
+    }
+  ]
+}
+

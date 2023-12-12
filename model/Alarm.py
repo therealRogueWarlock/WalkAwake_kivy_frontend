@@ -7,15 +7,11 @@ class Alarm:
     Enabled: bool
 
 
-def as_alarm(jdict):
+def as_alarm(jdict) -> list[Alarm] | object:
+    # Check jdict is a Dict with an item 'alarms'
     if 'alarms' not in jdict:
         return jdict
     
+    # List Comprehension to convert into a list
     return [Alarm(a['Day'], a['Time'], a['Enabled']) for a in jdict['alarms']]
 
-# =============
-# |  Testing  |
-# =============
-if(__name__ == '__main__'):
-    test_obj = Alarm('Monday', '21:00', True)
-    print(test_obj.__dict__)

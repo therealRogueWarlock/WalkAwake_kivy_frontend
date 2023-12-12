@@ -3,7 +3,7 @@ from kivy.clock import Clock
 from threading import Thread
 import time
 from theme import Icons
-# from WalkAwake.CameraModule import ComputerVisionManager
+from WalkAwake.CameraModule import ComputerVisionManager
 
 
 # camera
@@ -19,7 +19,7 @@ class Camera(Screen):
 
     def __init__(self, **kw):
         super().__init__(**kw)
-        # self.computer_vision_manager = ComputerVisionManager()
+        self.computer_vision_manager = ComputerVisionManager()
 
         self.capture_path = "data/"
         self.FPS = 15
@@ -38,7 +38,7 @@ class Camera(Screen):
     def verify_image(self):
         start = time.time() # TESTING
 
-        result = ''#self.computer_vision_manager.VerifyImage(self.target)
+        result = self.computer_vision_manager.VerifyImage(self.target)
         self.ids.ProcessingSpinner.active = False
 
         print("Result from verify " + str(result))

@@ -46,8 +46,9 @@ class AlarmManager(object):
         self.manager.StopAlarm()
 
     def snooze(self):
-        print(f'[{"ALARM_MANAGER.PY":16}] Attempting to Snooze')
-        self.manager.Snooze()
+        # print(f'[{"ALARM_MANAGER.PY":16}] Attempting to Snooze')
+        # self.manager.Snooze()
+        pass
 
     def get_alarms(self):
         alarms_json = self.manager.GetAlarms()

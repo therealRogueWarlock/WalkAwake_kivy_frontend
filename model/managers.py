@@ -37,7 +37,7 @@ class AlarmManager(object):
 
     def save_alarms(self):
         formatted = json.dumps(self.alarms, default=lambda alarm: alarm.__dict__)
-        formatted = f'{{"alarms:{formatted}"}}'
+        formatted = f'{{"alarms":{formatted}}}'
         self.manager.UpdateAlarms(formatted)
         pass
 

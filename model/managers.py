@@ -1,5 +1,5 @@
 import datetime as dt
-from model.Alarm import Alarm
+from model.Alarm import Alarm, as_alarm
 from WalkAwake import *
 import json
 
@@ -12,8 +12,9 @@ class AlarmManager(object):
     def __init__(self, manager) -> None:
         self.manager = manager
         # Read alarms from Back End
-        read_alarms = self.manager.GetAlarms()
-        self.alarms = json.loads(read_alarms, object_hook=type(list[Alarm]))
+        path = 'data/Alarms.json'
+        with open(path) as p:
+            self.alarms = json.load(p, object_hook=as_alarm)
         # Parse alarms (json.loads('json string'))
 
         # Check if self.alarms is empty

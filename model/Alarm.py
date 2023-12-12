@@ -7,6 +7,12 @@ class Alarm:
     Enabled: bool
 
 
+def as_alarm(jdict):
+    if 'alarms' not in jdict:
+        return jdict
+    
+    return [Alarm(a['Day'], a['Time'], a['Enabled']) for a in jdict['alarms']]
+
 # =============
 # |  Testing  |
 # =============

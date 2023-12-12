@@ -16,7 +16,7 @@ def kivy_setup():
         Window.fullscreen = 'auto'
         Window.always_on_top = True
         Window.show_cursor = False
-        print(kivy.Config.set('input', 'mouse', ''))
+        # kivy.Config.set('input', 'mouse', '')
     else: # Not Linux
         Window.size = (Size.WIDTH, Size.HEIGHT)
         Window.borderless = True
